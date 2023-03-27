@@ -72,7 +72,7 @@ ga_domain: huangxuan.me
 # Sidebar settings
 sidebar: true # whether or not using Sidebar.
 sidebar-about-description: "아직 갈길이 먼 초보자"
-sidebar-avatar: https://github.com/junsoopooh/junsoopooh.github.io/blob/master/img/KakaoTalk_20230304_172044484.jpg # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-avatar: https://github.com/junsoopooh/junsoopooh.github.io/blob/master/img/KakaoTalk_20230304_172044484.png # use absolute URL, seeing it's used in both `/` and `/about/`
 
 # Featured Tags
 featured-tags: true # whether or not using Feature-Tags
