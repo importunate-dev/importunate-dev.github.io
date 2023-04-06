@@ -15,6 +15,11 @@ multilingual: true
     {{ about_en | markdownify }}
 </div>
 
+<!-- Korean  Version -->
+<div class="kr post-container">
+    {% capture about_kr %}{% include about/kr.md %}{% krdcapture %}
+    {{ about_kr | markdownify }}
+</div>
 
 {% if site.disqus_username %}
 <!-- disqus 评论框 start -->
