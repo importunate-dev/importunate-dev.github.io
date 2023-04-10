@@ -9,7 +9,7 @@ header-mask: 0.3
 
 <!-- Korean  Version -->
 <div class="kr post-container">
-    {% capture about_kr %}{% include about/kr.md %}
+    {% capture about_kr %}{% include about/kr.md %}{% endcapture %}
     {{ about_kr | markdownify }}
 </div>
 
