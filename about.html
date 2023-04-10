@@ -2,19 +2,16 @@
 layout: page
 title: "About"
 description: ""
-header-img: "https://github.com/junsoopooh/junsoopooh.github.io/blob/master/img/KakaoTalk_20230304_172437112.jpg"
+header-img: "img/baby2.jpg"
 header-mask: 0.3
-multilingual: true
 ---
 
-{% include multilingual-sel.html %}
 
-<!-- English Version -->
-<div class="en post-container">
-    {% capture about_en %}{% include about/en.md %}{% endcapture %}
-    {{ about_en | markdownify }}
+<!-- Korean  Version -->
+<div class="kr post-container">
+    {% capture about_kr %}{% include about/kr.md %}{% endcapture %}
+    {{ about_kr | markdownify }}
 </div>
-
 
 {% if site.disqus_username %}
 <!-- disqus 评论框 start -->
@@ -38,5 +35,5 @@ multilingual: true
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })(); -->
 </script>
-<!-- disqus 公共JS代码 end --> -->
+<!-- disqus 公共JS代码 end -->
 {% endif %}

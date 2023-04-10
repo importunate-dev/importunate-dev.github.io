@@ -2,7 +2,6 @@
     @param {string} type - 'page' | 'post' | 'keynote'
     @param {boolean} short
 {% endcomment %}
-
 {% if include.type == 'post' or include.type == 'page' %}
 <style type="text/css">
     header.intro-header{
@@ -21,7 +20,6 @@
     {% endif %}
 </style>
 {% endif %}
-
 {% if include.type == 'post' %}
 {% if page.header-style == 'text' %}
 <header class="intro-header style-text" >
@@ -53,7 +51,6 @@
     </div>
 </header>
 {% endif %}
-
 {% if include.type == 'keynote' %}
 <style type="text/css">
     header.intro-header{
@@ -92,7 +89,6 @@
     </div>
 </header>
 {% endif %}
-
 {% if include.type == 'page' %}
 <header class="intro-header" style="background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}')">
   <div class="header-mask"></div>
