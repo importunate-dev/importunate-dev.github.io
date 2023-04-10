@@ -1,7 +1,7 @@
 # Site settings
 title: Importunate
 SEOTitle: Importunate
-header-img: https://github.com/junsoopooh/junsoopooh.github.io/blob/master/img/KakaoTalk_20230304_172437112.png
+header-img: "https://github.com/junsoopooh/junsoopooh.github.io/blob/master/img/KakaoTalk_20230304_172437112.png"
 email: junsoopooh@naver.com
 description: It's late, but it's better than turning a blind eye.
 keyword: programmer, beginner
