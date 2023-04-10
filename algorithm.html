@@ -7,7 +7,7 @@ header-mask: 0.3
 ---
 
 {% for post in paginator.posts %}
-{% if post.tags == algorithm %}
+{% if algorithm in post.tags %}
 <div class="post-preview">
     <a href="{{ post.url | prepend: site.baseurl }}">
         <h2 class="post-title">
