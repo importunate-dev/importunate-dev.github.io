@@ -5,9 +5,8 @@ description: "Python Algorithm"
 header-img: "img/baby3.jpg"
 header-mask: 0.3
 ---
-{% site.tags.algorithm %}
-{% for post in paginator.posts %}
 
+{% for post in paginator.posts %}
 <div class="post-preview">
     <a href="{{ post.url | prepend: site.baseurl }}">
         <h2 class="post-title">
@@ -31,7 +30,6 @@ header-mask: 0.3
     </p>
 </div>
 <hr>
-{% endif %}
 {% endfor %}
 
 <!-- Pager -->
