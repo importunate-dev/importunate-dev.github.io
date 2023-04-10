@@ -5,9 +5,9 @@ description: "Python Algorithm"
 header-img: "img/baby3.jpg"
 header-mask: 0.3
 ---
-
+{% site.tags.algorithm %}
 {% for post in paginator.posts %}
-{% if algorithm in post.tags %}
+
 <div class="post-preview">
     <a href="{{ post.url | prepend: site.baseurl }}">
         <h2 class="post-title">
