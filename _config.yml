@@ -1,7 +1,7 @@
 # Site settings
 title: Importunate
 SEOTitle: Importunate
-header-img: /img/KakaoTalk_20230304_172044484.png
+header-img: /img/sister.jpg
 email: junsoopooh@naver.com
 description: It's late, but it's better than turning a blind eye.
 keyword: programmer, beginner
@@ -72,7 +72,7 @@ netease_comment: false
 # Sidebar settings
 sidebar: true # whether or not using Sidebar.
 sidebar-about-description: "아직 갈길이 먼 초보자"
-sidebar-avatar: /img/KakaoTalk_20230304_172437112.png # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-avatar: /img/junsu.jpg # use absolute URL, seeing it's used in both `/` and `/about/`
 
 # Featured Tags
 featured-tags: true # whether or not using Feature-Tags
