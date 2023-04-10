@@ -6,7 +6,7 @@
 <style type="text/css">
     header.intro-header{
         position: relative;
-        background-image: url('{{ site.baseurl }}/https://github.com/junsoopooh/junsoopooh.github.io/blob/master/img/KakaoTalk_20230304_172437112.png);
+        background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}');
         background: {{ page.header-bg-css }};
     }
 
@@ -90,7 +90,7 @@
 </header>
 {% endif %}
 {% if include.type == 'page' %}
-<header class="intro-header" style="background-image: url('{{ site.baseurl }}/https://github.com/junsoopooh/junsoopooh.github.io/blob/master/img/KakaoTalk_20230304_172437112.png')">
+<header class="intro-header" style="background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}')">
   <div class="header-mask"></div>
   <div class="container">
     <div class="row">
