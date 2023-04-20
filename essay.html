@@ -7,7 +7,7 @@ header-mask: 0.3
 ---
 
 {% for post in paginator.posts %}
-{% for essay in post.tags %}
+{% if essay in post.tags %}
 <div class="post-preview">
     <a href="{{ post.url | prepend: site.baseurl }}">
         <h2 class="post-title">
@@ -31,7 +31,7 @@ header-mask: 0.3
     </p>
 </div>
 <hr>
-{% endfor %}
+{% endif %}
 {% endfor %}
 
 <!-- Pager -->
