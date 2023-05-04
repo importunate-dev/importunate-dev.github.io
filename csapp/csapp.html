@@ -33,6 +33,7 @@ header-mask: 0.3
 {% endfor %} -->
 
 {% for tag in site.tags %}
+{% if tag == 'csapp' %}
   <h3>{{ tag }}</h3>
   <ul>
     {% for post in tag %}
