@@ -72,7 +72,7 @@ netease_comment: false
 # Sidebar settings
 sidebar: true # whether or not using Sidebar.
 sidebar-about-description: "아직 갈길이 먼 초보자"
-sidebar-avatar: "https://github.com/junsoopooh/junsoopooh.github.io/blob/master/img/junsu.jpg" # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-avatar: "img/junsu.jpg" # use absolute URL, seeing it's used in both `/` and `/about/`
 
 # Featured Tags
 featured-tags: true # whether or not using Feature-Tags
