@@ -5,8 +5,7 @@ description: "Something to know"
 header-img: "img/baby7.jpg"
 header-mask: 0.3
 ---
-{% for post in site.categories.etc.posts %}
-{% if post.category == etc %}
+{% for post in site.categories.etc %}
 <div class="post-preview">
     <a href="{{ post.url | prepend: site.baseurl }}">
         <h2 class="post-title">
@@ -31,7 +30,6 @@ header-mask: 0.3
     </p>
 </div>
 <hr>
-{% endif %}
 {% endfor %}
 
 <!-- Pager -->

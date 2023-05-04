@@ -6,8 +6,7 @@ header-img: "img/baby6.jpg"
 header-mask: 0.3
 ---
 
-{% for post in site.categories.book.posts %}
-    {% if post.categories == "book" %}
+{% for post in site.categories.book %}
 <div class="post-preview">
     <a href="{{ post.url | prepend: site.baseurl }}">
         <h2 class="post-title">
@@ -31,7 +30,6 @@ header-mask: 0.3
     </p>
 </div>
 <hr>
-{% endif %}
 {% endfor %}
 
 <!-- Pager -->
