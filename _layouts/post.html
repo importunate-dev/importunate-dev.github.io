@@ -30,6 +30,7 @@ layout: default
                 <hr style="visibility: hidden;">
                 <ul class="pager">
                     {% if page.previous.url %}
+                    {% if page.previous.categories == page.categories %}
                     <li class="previous">
                         <a href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.previous.title}}">
                         Previous<br>
@@ -37,13 +38,16 @@ layout: default
                         </a>
                     </li>
                     {% endif %}
+                    {% endif %}
                     {% if page.next.url %}
+                    {% if page.next.categories == page.categories %}
                     <li class="next">
                         <a href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.next.title}}">
                         Next<br>
                         <span>{{page.next.title}}</span>
                         </a>
                     </li>
+                    {% endif %}
                     {% endif %}
                 </ul>
                 <hr style="visibility: hidden;">
