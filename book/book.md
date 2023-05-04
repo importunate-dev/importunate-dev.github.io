@@ -6,7 +6,7 @@ header-img: "img/baby6.jpg"
 header-mask: 0.3
 ---
 
-{% for post in paginator.posts %}
+{% for post in site.categories.book.posts %}
     {% if post.categories == "book" %}
 <div class="post-preview">
     <a href="{{ post.url | prepend: site.baseurl }}">
@@ -35,16 +35,16 @@ header-mask: 0.3
 {% endfor %}
 
 <!-- Pager -->
-{% if paginator.total_pages > 1 %}
+{% if site.categories.book.total_pages > 1 %}
 <ul class="pager">
-    {% if paginator.previous_page %}
+    {% if site.categories.book.previous_page %}
     <li class="previous">
-        <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer Posts</a>
+        <a href="{{ site.categories.book.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer Posts</a>
     </li>
     {% endif %}
-    {% if paginator.next_page %}
+    {% if site.categories.book.next_page %}
     <li class="next">
-        <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts &rarr;</a>
+        <a href="{{ site.categories.book.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts &rarr;</a>
     </li>
     {% endif %}
 </ul>
