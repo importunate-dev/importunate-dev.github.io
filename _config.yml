@@ -20,7 +20,7 @@ instagram_username:  n0t_bad0411
 # Build settings
 # from 2016, 'pygments' is unsupported on GitHub Pages. Use 'rouge' for highlighting instead.
 highlighter: rouge
-permalink: /:categories/:title/
+permalink: /:categories/
 paginate: 10
 exclude:
   [
