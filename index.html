@@ -3,7 +3,7 @@ layout: page
 description: "It's late, but it's better than turning a blind eye."
 ---
 
-{% for post in site.categories.notice.posts %}
+{% for post in site.tags.notice.posts %}
 <div class="post-preview">
     <a href="{{ post.url | prepend: site.baseurl }}">
         <h2 class="post-title">
@@ -31,17 +31,17 @@ description: "It's late, but it's better than turning a blind eye."
 {% endfor %}
 
 <!-- Pager -->
-{% if site.categories.notice.total_pages > 1 %}
+{% if site.tags.notice.total_pages > 1 %}
 <ul class="pager">
-    {% if site.categories.notice.previous_page %}
+    {% if site.tags.notice.previous_page %}
     <li class="previous">
-        <a href="{{ site.categories.notice.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr;
+        <a href="{{ site.tags.notice.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr;
             Newer Posts</a>
     </li>
     {% endif %}
-    {% if site.categories.notice.next_page %}
+    {% if site.tags.notice.next_page %}
     <li class="next">
-        <a href="{{ site.categories.notice.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts
+        <a href="{{ site.tags.notice.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts
             &rarr;</a>
     </li>
     {% endif %}
