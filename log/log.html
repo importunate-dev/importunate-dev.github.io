@@ -33,16 +33,16 @@ header-mask: 0.3
 {% endfor %}
 
 <!-- Pager -->
-{% if paginator.total_pages > 1 %}
+{% if site.categories.log.total_pages > 1 %}
 <ul class="pager">
-    {% if paginator.previous_page %}
+    {% if site.categories.log.previous_page %}
     <li class="previous">
-        <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer Posts</a>
+        <a href="{{ site.categories.log.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer Posts</a>
     </li>
     {% endif %}
-    {% if paginator.next_page %}
+    {% if site.categories.log.next_page %}
     <li class="next">
-        <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts &rarr;</a>
+        <a href="{{ site.categories.log.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts &rarr;</a>
     </li>
     {% endif %}
 </ul>
