@@ -56,10 +56,10 @@ kramdown:
       start_line: 1
 
 # Disqus settings
-disqus_username: Importunate
+disqus_username: "junsoopooh.github.io/"
 
 # Netease settings
-netease_comment: true
+netease_comment: false
 
 # Analytics settings
 # Baidu Analytics
