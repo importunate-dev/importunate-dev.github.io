@@ -4,6 +4,7 @@ title: "About"
 description: ""
 header-img: "img/baby2.jpg"
 header-mask: 0.3
+multilingual: true
 ---
 
 
@@ -12,11 +13,11 @@ header-mask: 0.3
     {% capture about_kr %}{% include about/kr.md %}{% endcapture %}
     {{ about_kr | markdownify }}
 </div>
-<!-- English Version -->
+<!-- English Version
 <div class="en post-container">
     {% capture about_en %}{% include about/en.md %}{% endcapture %}
     {{ about_en | markdownify }}
-</div>
+</div> -->
 
 {% if site.disqus_username %}
 <!-- disqus 评论框 start -->
