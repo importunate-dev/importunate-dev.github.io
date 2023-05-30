@@ -9,10 +9,13 @@ header-mask: 0.3
 
 <!-- Korean  Version -->
 <div class="kr post-container">
-
-    Importunate
     {% capture about_kr %}{% include about/kr.md %}{% endcapture %}
     {{ about_kr | markdownify }}
+</div>
+<!-- English Version -->
+<div class="en post-container">
+    {% capture about_en %}{% include about/en.md %}{% endcapture %}
+    {{ about_en | markdownify }}
 </div>
 
 {% if site.disqus_username %}
