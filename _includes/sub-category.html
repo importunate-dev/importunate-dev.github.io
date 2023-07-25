@@ -9,13 +9,13 @@
 <div class="boards">
     {% if page.subcategory and page.subcategory.size > 0 %}
         {% for subdir in page.subcategory %}
-            <a href="{{ site.baseurl }}/{{ page.path }}/{{ subdir }}"
+            <a href="{{ site.baseurl }}/{{ page.path | remove: 'index.html' }}/{{ subdir }}"
                 title="{{ subdir }}"
                 rel="{{ subdir }}"
                 style="display: block;">{{ subdir }}</a>
         {% endfor %}
     {% else %}
-        <a href="{{ site.baseurl }}/{{ page.path }}"
+        <a href="{{ site.baseurl }}/{{ page.path | remove: 'index.html' }}"
             title="{{ page.title }}"
             rel="{{ page.path }}"
             style="display: block;">{{ page.title }}</a>
