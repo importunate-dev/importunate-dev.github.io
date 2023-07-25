@@ -9,7 +9,7 @@
 <div class="boards">
     {% assign boards = "about, jungle, life, log, project, study" | split: ", " %}
     {% for board in boards %}
-        <a href="{{ site.baseurl }}/{{ board }}"
+        <a href="{{ site.baseurl }}/{{ board }}/{{ board }}"
             title="{{ board }}"
             rel="{{ board }}"
             style="display: block;">{{ board }}</a>
