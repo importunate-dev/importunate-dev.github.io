@@ -25,17 +25,17 @@ header-mask: 0.3
 {% endfor %}
 
 <!-- Pager -->
-{% if site.categories.etc.total_pages > 1 %}
+{% if site.categories.jungle.total_pages > 1 %}
 <ul class="pager">
-    {% if site.categories.etc.previous_page %}
+    {% if site.categories.jungle.previous_page %}
     <li class="previous">
-        <a href="{{ site.categories.etc.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer
+        <a href="{{ site.categories.jungle.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer
             Posts</a>
     </li>
     {% endif %}
-    {% if site.categories.etc.next_page %}
+    {% if site.categories.jungle.next_page %}
     <li class="next">
-        <a href="{{ site.categories.etc.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts
+        <a href="{{ site.categories.jungle.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts
             &rarr;</a>
     </li>
     {% endif %}
