@@ -4,9 +4,50 @@ title: "study"
 description: "개인 공부 기록실"
 header-img: "img/baby5.jpg"
 header-mask: 0.3
+pagination: 
+    enabled: true
+    collections: posts
+    category: jungle
+    per_page: 5
 ---
 
-{% for post in site.categories.study %}
+{% for post in paginator.posts %}
+<div class="post-preview">
+    <a href="{{ post.url | prepend: site.baseurl }}">
+        <h2 class="post-title">
+            {{ post.title }}
+        </h2>
+        {% if post.subtitle %}
+        <h3 class="post-subtitle">
+            {{ post.subtitle }}
+        </h3>
+        {% endif %}
+    </a>
+    <p class="post-meta">
+        {{ post.date | date: "%Y.%m.%d" }}
+    </p>
+</div>
+<hr>
+{% endfor %}
+
+<!-- Pager -->
+{% if paginator.total_pages > 1 %}
+<ul class="pager">
+    {% if paginator.previous_page %}
+    <li class="previous">
+        <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer
+            Posts</a>
+    </li>
+    {% endif %}
+    {% if paginator.next_page %}
+    <li class="next">
+        <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts
+            &rarr;</a>
+    </li>
+    {% endif %}
+</ul>
+{% endif %}
+<!-- {% for post in site.categories.study %}
 <div class="post-preview">
     <a href="{{ post.url | prepend: site.baseurl }}">
         <h2 class="post-title">
@@ -41,4 +82,4 @@ header-mask: 0.3
     </li>
     {% endif %}
 </ul>
-{% endif %}
+{% endif %} -->
