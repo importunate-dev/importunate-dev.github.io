@@ -4,8 +4,30 @@ description: "블로그에 오신 것을 환영합니다."
 header-img: "img/baby.jpg"
 header-mask: 0.3
 ---
+우측 상단의 게시판이 있습니다.<br>
+<br>
+최근 일주일 간 게시물
+{% assign current_date = 'now' | date: '%s' %}
+{% assign week_ago = current_date | minus: 604800 %}
 
-오른쪽 상단의 게시판으로 이동하시면 게시물을 보실 수 있습니다.
-
-최근 업데이트 게시물
+{% for post in site.posts %}
+    {% assign post_seconds = post.date | date: '%s' %}
+    {% if post_seconds >= week_ago %}
+        <div class="post-preview">
+            <a href="{{ post.url | prepend: site.baseurl }}">
+                <h2 class="post-title">
+                    {{ post.title }}
+                </h2>
+                {% if post.subtitle %}
+                <h3 class="post-subtitle">
+                    {{ post.subtitle }}
+                </h3>
+                {% endif %}
+            </a>
+            <p class="post-meta">
+                {{ post.date | date: "%Y.%m.%d" }}
+            </p>
+        </div>
+    {% endif %}
+{% endfor %}
 
