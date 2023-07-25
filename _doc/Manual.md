@@ -8,7 +8,7 @@
 - Components
   - [SideBar](#sidebar)
   - [Mini About Me](#mini-about-me)
-  - [Featured Tags](#featured-board)
+  - [Featured Tags](#sub-category)
   - [Friends](#friends)
   - [Keynote Layout](#keynote-layout)
 - Misc
@@ -132,7 +132,7 @@ sidebar-about-description: "your description here"
 sidebar-avatar: /img/avatar-hux.jpg # use absolute URL.
 ```
 
-Modules _[Featured Tags](#featured-board)_, _[Mini About Me](#mini-about-me)_ and _[Friends](#friends)_ are turned on by default and you can add your own. The sidebar is naturally responsive, i.e. be pushed to bottom in a smaller screen (`<= 992px`, according to [Bootstarp Grid System](http://getbootstrap.com/css/#grid))
+Modules _[Featured Tags](#sub-category)_, _[Mini About Me](#mini-about-me)_ and _[Friends](#friends)_ are turned on by default and you can add your own. The sidebar is naturally responsive, i.e. be pushed to bottom in a smaller screen (`<= 992px`, according to [Bootstarp Grid System](http://getbootstrap.com/css/#grid))
 
 ### Mini About Me
 
@@ -142,12 +142,12 @@ It would be hidden in a smaller screen when the entire sidebar are pushed to bot
 
 ### Featured Tags
 
-**featured-board** is similar to any cool tag features in website like [Medium](http://medium.com).
+**sub-category** is similar to any cool tag features in website like [Medium](http://medium.com).
 Started from V1.4, this module can be used even when sidebar is off and displayed always in the bottom.
 
 ```yml
 # Featured Tags
-featured-board: true
+sub-category: true
 featured-condition-size: 1 # A tag will be featured if the size of it is more than this condition value
 ```
 
@@ -287,7 +287,7 @@ Make sure you installed it via plain `gem` CLI or Bundler.
 
 #### V1.4
 
-- **[Featured Tags](#featured-board)** is now independent of [SideBar](#sidebar). Both documents is updated.
+- **[Featured Tags](#sub-category)** is now independent of [SideBar](#sidebar). Both documents is updated.
 - New **[SEO Title](#seo-title)** for SEO usage which is differ from the site title
 
 #### V1.3.1
