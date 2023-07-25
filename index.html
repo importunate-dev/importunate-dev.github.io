@@ -11,7 +11,7 @@ header-mask: 0.3
 {% assign week_ago = current_date | minus: 604800 %}
 
 {% for post in site.posts %}
-    {% assign post_seconds = post.date | date: '%s' %}
+    {% assign post_seconds = post.date | date: '%s' % | plus: 0 %}
     {% if post_seconds >= week_ago %}
         <div class="post-preview">
             <a href="{{ post.url | prepend: site.baseurl }}">
