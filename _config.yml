@@ -61,13 +61,6 @@ kramdown:
 # Disqus settings
 disqus_username: junsoopooh.github.io
 
-# Netease settings
-netease_comment: false
-
-# # Google Analytics
-# ga_track_id: "UA-49627206-1" # Format: UA-xxxxxx-xx
-# ga_domain: huangxuan.me
-
 # Sidebar settings
 sidebar: true # whether or not using Sidebar.
 sidebar-about-description: "아직 갈길이 먼 초보자"
