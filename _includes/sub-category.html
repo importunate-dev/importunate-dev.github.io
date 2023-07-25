@@ -8,18 +8,17 @@
 <h3>모아보기</h3>
 <div class="boards">
     {% if page.subcategory and page.subcategory.size > 0 %}
-    {% assign subcategory = page.subcategory | split: ", " %}
-    {% for subdir in subcategory %}
-        <a href="{{ site.baseurl }}/{{ page.path }}/{{ subdir }}"
-            title="{{ subdir }}"
-            rel="{{ subdir }}"
-            style="display: block;">{{ subdir }}</a>
-    {% endfor %}
-{% else %}
-    <a href="{{ site.baseurl }}/{{ page.path }}"
-        title="{{ page.title }}"
-        rel="{{ page.path }}"
-        style="display: block;">{{ page.title }}</a>
-{% endif %}
-
+        {% for subdir in page.subcategory %}
+            <a href="{{ site.baseurl }}/{{ page.path }}/{{ subdir }}"
+                title="{{ subdir }}"
+                rel="{{ subdir }}"
+                style="display: block;">{{ subdir }}</a>
+        {% endfor %}
+    {% else %}
+        <a href="{{ site.baseurl }}/{{ page.path }}"
+            title="{{ page.title }}"
+            rel="{{ page.path }}"
+            style="display: block;">{{ page.title }}</a>
+    {% endif %}
 </div>
+

@@ -4,25 +4,19 @@ title: "Project"
 description: "개인 프로젝트"
 header-img: "img/baby11.jpg"
 header-mask: 0.3
-subdirectory: 
-    - codeeat
+subcategory:
+  - codeeat
 ---
 
 {% for post in site.categories.project %}
 <div class="post-preview">
-    <a href="{{ post.url | prepend: site.baseurl }}">
-        <h2 class="post-title">
-            {{ post.title }}
-        </h2>
-        {% if post.subtitle %}
-        <h3 class="post-subtitle">
-            {{ post.subtitle }}
-        </h3>
-        {% endif %}
-    </a>
-    <p class="post-meta">
-        {{ post.date | date: "%Y.%m.%d" }}
-    </p>
+  <a href="{{ post.url | prepend: site.baseurl }}">
+    <h2 class="post-title">{{ post.title }}</h2>
+    {% if post.subtitle %}
+    <h3 class="post-subtitle">{{ post.subtitle }}</h3>
+    {% endif %}
+  </a>
+  <p class="post-meta">{{ post.date | date: "%Y.%m.%d" }}</p>
 </div>
-<hr>
+<hr />
 {% endfor %}
