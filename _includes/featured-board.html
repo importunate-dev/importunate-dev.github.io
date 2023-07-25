@@ -5,13 +5,20 @@
 {% if include.bottom %}
     <hr class="hidden-sm hidden-xs">
 {% endif %}
-<h2>게시판 이동하기</h2>
+<h3>모아보기</h3>
 <div class="boards">
-    {% assign boards = "about, jungle, life, log, project, study" | split: ", " %}
-    {% for board in boards %}
-        <a href="{{ site.baseurl }}/{{ board }}/{{ board }}"
-            title="{{ board }}"
-            rel="{{ board }}"
-            style="display: block;">{{ board }}</a>
-    {% endfor %}
+    {% if page.subdirectory %}
+        {% assign subdirectory = page.subdirectory | split: ", " %}
+        {% for subdir in subdirectory %}
+            <a href="{{ site.baseurl }}/{{ page.path }}/{{ subdir }}"
+                title="{{ subdir }}"
+                rel="{{ subdir }}"
+                style="display: block;">{{ subdir }}</a>
+        {% endfor %}
+    {% else %}
+        <a href="{{ site.baseurl }}/{{ page.path }}"
+            title="{{ page.title }}"
+            rel="{{ page.path }}"
+            style="display: block;">{{ page.title }}</a>
+    {% endif %}
 </div>
