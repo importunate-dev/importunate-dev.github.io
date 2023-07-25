@@ -1488,14 +1488,13 @@ img::-moz-selection {
   padding: 0 10px 0 10px;
   color: #ffffff;
   line-height: 24px;
-  font-size: 12px;
+  font-size: 18px;
   font-weight: bold;  /* Make font thicker */
   text-decoration: none;
   margin: 0 1px;
   margin-bottom: 6px;
   cursor: pointer;
 }
-
 .boards a:hover,
 .boards a:active {
   color: white;
