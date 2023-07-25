@@ -299,6 +299,10 @@
                     return value;
                 }
             }
+            if (prop === 'date') {
+            var d = new Date(value);
+            return d.toISOString().slice(0,10); // convert date to "yyyy-mm-dd" format
+        }
         }
     });
 
