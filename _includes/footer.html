@@ -285,7 +285,7 @@
         searchInput: document.getElementById('search-input'),
         resultsContainer: document.getElementById('search-results'),
         json: '/search.json',
-        searchResultTemplate: '<div class="post-preview item"><h2 class="search-results-header">검색 결과</h2><a href="{url}"><p class="post-title">제목: {title}</p><p class="post-subtitle">부제: {subtitle}</p><p class="related-tags">관련 태그: {tags}</p><p class="post-date">작성일: {date}</p><hr></a></div>',
+        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><p class="post-title">제목: {title}</p><p class="post-subtitle">부제: {subtitle}</p><p class="related-tags">관련 태그: {tags}</p><p class="post-date">작성일: {date}</p><hr></a></div>',
         noResultsText: '검색 결과가 없습니다.',
         limit: 50,
         fuzzy: false,
