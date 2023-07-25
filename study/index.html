@@ -24,21 +24,3 @@ header-mask: 0.3
 </div>
 <hr>
 {% endfor %}
-
-<!-- Pager -->
-{% if site.categories.study.total_pages > 1 %}
-<ul class="pager">
-    {% if site.categories.study.previous_page %}
-    <li class="previous">
-        <a href="{{ site.categories.study.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr;
-            Newer Posts</a>
-    </li>
-    {% endif %}
-    {% if site.categories.study.next_page %}
-    <li class="next">
-        <a href="{{ site.categories.study.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts
-            &rarr;</a>
-    </li>
-    {% endif %}
-</ul>
-{% endif %}

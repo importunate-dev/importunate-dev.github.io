@@ -1,0 +1,32 @@
+---
+layout: page
+title: "DAILY"
+description: " 일간 학습 기록 "
+header-img: "img/baby5.jpg"
+header-mask: 0.3
+---
+
+<h1>DAILY</h1>
+
+<ul>
+{% for post in site.posts %}
+  {% if post.category == 'log' and post.subcategory == 'daily' %}
+  <div class="post-preview">
+    <a href="{{ post.url | prepend: site.baseurl }}">
+        <h2 class="post-title">
+            {{ post.title }}
+        </h2>
+        {% if post.subtitle %}
+        <h3 class="post-subtitle">
+            {{ post.subtitle }}
+        </h3>
+        {% endif %}
+    </a>
+    <p class="post-meta">
+        {{ post.date | date: "%Y.%m.%d" }}
+    </p>
+</div>
+<hr>
+  {% endif %}
+{% endfor %}
+</ul>

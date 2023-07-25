@@ -7,10 +7,10 @@
 {% endif %}
 <h3>모아보기</h3>
 <div class="boards">
-    {% if page.subdirectory %}
-        {% assign subdirectory = page.subdirectory | split: ", " %}
-        {% for subdir in subdirectory %}
-            <a href="{{ site.baseurl }}/{{ page.path }}/{{ subdir }}"
+    {% if page.category %}
+        {% assign subcategory = page.subcategory | split: ", " %}
+        {% for subdir in subcategory %}
+            <a href="{{ site.baseurl }}/{{ page.category }}/{{ subdir }}"
                 title="{{ subdir }}"
                 rel="{{ subdir }}"
                 style="display: block;">{{ subdir }}</a>
@@ -22,3 +22,4 @@
             style="display: block;">{{ page.title }}</a>
     {% endif %}
 </div>
+

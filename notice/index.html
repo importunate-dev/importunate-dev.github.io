@@ -17,13 +17,6 @@ header-mask: 0.3
             {{ post.subtitle }}
         </h3>
         {% endif %}
-        <!-- <div class="post-content-preview">
-            {% if post.lang == 'en' %}
-            {{ post.content | strip_html | truncate:300 }}
-            {% else %}
-            {{ post.content | strip_html | truncate:200 }}
-            {% endif %}
-        </div> -->
     </a>
     <p class="post-meta">
         {{ post.date | date: "%Y.%m.%d" }}
@@ -31,21 +24,3 @@ header-mask: 0.3
 </div>
 <hr>
 {% endfor %}
-
-<!-- Pager -->
-{% if site.categories.notice.total_pages > 1 %}
-<ul class="pager">
-    {% if site.categories.notice.previous_page %}
-    <li class="previous">
-        <a href="{{ site.categories.notice.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr;
-            Newer Posts</a>
-    </li>
-    {% endif %}
-    {% if site.categories.notice.next_page %}
-    <li class="next">
-        <a href="{{ site.categories.notice.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts
-            &rarr;</a>
-    </li>
-    {% endif %}
-</ul>
-{% endif %}
