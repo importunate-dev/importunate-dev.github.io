@@ -30,7 +30,6 @@ pagination:
 <hr>
 {% endfor %}
 
-<!-- Pager -->
 {% if paginator.total_pages > 1 %}
 <ul class="pager">
     {% if paginator.previous_page %}
@@ -47,6 +46,7 @@ pagination:
     {% endif %}
 </ul>
 {% endif %}
+
 <!-- {% for post in site.categories.study %}
 <div class="post-preview">
     <a href="{{ post.url | prepend: site.baseurl }}">
@@ -64,10 +64,10 @@ pagination:
     </p>
 </div>
 <hr>
-{% endfor %}
+{% endfor %} -->
 
 <!-- Pager -->
-{% if site.categories.study.total_pages > 1 %}
+<!-- {% if site.categories.study.total_pages > 1 %}
 <ul class="pager">
     {% if site.categories.study.previous_page %}
     <li class="previous">
