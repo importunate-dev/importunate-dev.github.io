@@ -24,6 +24,7 @@ leetcode_username: junsoopooh
 # from 2016, 'pygments' is unsupported on GitHub Pages. Use 'rouge' for highlighting instead.
 highlighter: rouge
 permalink: /:categories/:title/
+paginate: 10
 exclude:
   [
     "less",
@@ -41,7 +42,7 @@ anchorjs: true # if you want to customize anchor. check out line:181 of `post.ht
 # from PR#40, to support local preview for Jekyll 3.0
 # make sure you have this gem installed
 # `$ gem install jekyll-paginate`
-plugins: [jekyll-paginate-v2]
+plugins: [jekyll-paginate]
 
 # Markdown settings
 # replace redcarpet to kramdown,
@@ -79,12 +80,6 @@ featured-condition-size: 1 # A tag will be featured if the size of it is more th
 # Progressive Web Apps
 chrome-tab-theme-color: "#000000"
 service-worker: true
-
-pagination:
-  enabled: true
-  per_page: 5
-  sort_field: 'date'
-  sort_reverse: true
 
 # MathJax rendering for layout:page (e.g. post preview)
 page-mathjax: true

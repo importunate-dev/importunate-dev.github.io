@@ -4,13 +4,8 @@ title: "jungle"
 description: "SW사관학교 정글 6기"
 header-img: "img/baby7.jpg"
 header-mask: 0.3
-pagination: 
-    enabled: true
-    collections: posts
-    category: jungle
-    per_page: 5
 ---
-{% for post in paginator.posts %}
+{% for post in site.categories.jungle %}
 <div class="post-preview">
     <a href="{{ post.url | prepend: site.baseurl }}">
         <h2 class="post-title">
@@ -30,17 +25,17 @@ pagination:
 {% endfor %}
 
 <!-- Pager -->
-{% if paginator.total_pages > 1 %}
+{% if site.categories.jungle.total_pages > 1 %}
 <ul class="pager">
-    {% if paginator.previous_page %}
+    {% if site.categories.jungle.previous_page %}
     <li class="previous">
-        <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer
+        <a href="{{ site.categories.jungle.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer
             Posts</a>
     </li>
     {% endif %}
-    {% if paginator.next_page %}
+    {% if site.categories.jungle.next_page %}
     <li class="next">
-        <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts
+        <a href="{{ site.categories.jungle.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts
             &rarr;</a>
     </li>
     {% endif %}
