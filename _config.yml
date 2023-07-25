@@ -13,9 +13,9 @@ future: true
 
 # SNS settings
 RSS: true
-github_username: junsoopooh 
-facebook_username:  junsoopooh  
-instagram_username:  n0t_bad0411
+github_username: junsoopooh
+facebook_username: junsoopooh
+instagram_username: n0t_bad0411
 linkedin_username: junsu-594122277
 acmicpc_username: junsoopooh
 leetcode_username: junsoopooh
@@ -73,8 +73,8 @@ sidebar: true # whether or not using Sidebar.
 sidebar-about-description: "아직 갈길이 먼 초보자"
 sidebar-avatar: "/img/junsu.jpg" # use absolute URL, seeing it's used in both `/` and `/about/`
 
-# Featured Tags
-featured-tags: true # whether or not using Feature-Tags
+# Featured Board
+featured-board: true # whether or not using Feature-Tags
 featured-condition-size: 1 # A tag will be featured if the size of it is more than this condition value
 
 # Progressive Web Apps
@@ -83,10 +83,9 @@ service-worker: true
 
 # MathJax rendering for layout:page (e.g. post preview)
 page-mathjax: true
-
 # Friends
 # friends:
 #   [
 #     { title: "", href: "" },
-    
+
 #   ]

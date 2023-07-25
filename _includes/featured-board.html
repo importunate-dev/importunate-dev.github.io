@@ -1,0 +1,17 @@
+{% comment %}
+    @param {boolean} bottom - bottom will render <hr> 
+{% endcomment %}
+
+{% if include.bottom %}
+    <hr class="hidden-sm hidden-xs">
+{% endif %}
+<h5><a href="{{'/archive/' | prepend: site.baseurl }}">게시판 이동하기</a></h5>
+<div class="boards">
+    {% assign boards = "about, jungle, life, log, project, study" | split: ", " %}
+    {% for board in boards %}
+        <a href="{{ site.baseurl }}/{{ board }}"
+            title="{{ board }}"
+            rel="{{ board }}"
+            style="display: block;">{{ board }}</a>
+    {% endfor %}
+</div>
