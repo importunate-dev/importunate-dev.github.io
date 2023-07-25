@@ -1,12 +1,12 @@
 ---
 layout: page
-title: "Project"
-description: "개인 프로젝트"
+title: "notice"
+description: "공지사항"
 header-img: "img/baby11.jpg"
 header-mask: 0.3
 ---
 
-{% for post in site.categories.project %}
+{% for post in site.categories.notice %}
 <div class="post-preview">
     <a href="{{ post.url | prepend: site.baseurl }}">
         <h2 class="post-title">
@@ -34,17 +34,17 @@ header-mask: 0.3
 {% endfor %}
 
 <!-- Pager -->
-{% if site.categories.project.total_pages > 1 %}
+{% if site.categories.notice.total_pages > 1 %}
 <ul class="pager">
-    {% if site.categories.project.previous_page %}
+    {% if site.categories.notice.previous_page %}
     <li class="previous">
-        <a href="{{ site.categories.project.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr;
+        <a href="{{ site.categories.notice.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr;
             Newer Posts</a>
     </li>
     {% endif %}
-    {% if site.categories.project.next_page %}
+    {% if site.categories.notice.next_page %}
     <li class="next">
-        <a href="{{ site.categories.project.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts
+        <a href="{{ site.categories.notice.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts
             &rarr;</a>
     </li>
     {% endif %}
