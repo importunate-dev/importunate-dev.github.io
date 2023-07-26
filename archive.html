@@ -17,7 +17,7 @@ header-img: "img/introheader.jpg"
                 <span>Tag Top 5:</span>
                 {% assign sorted_tags = site.tags | sort: 'size' | reverse %}
                 {% for tag in sorted_tags limit:5 %}
-                <a data-sort="{{ site.posts.size | minus: tag[1] | size | prepend: '0000' | slice: -4, 4 }}"
+                <a data-sort="{{ site.posts.size | minus: tag[1] | length | prepend: '0000' | slice: -4, 4 }}"
                    data-encode="{{ tag[0] | strip | url_encode }}" class="tag-button" title="{{ tag[0] }}"
                    rel="{{ tag[1].size }}">
                     {{ tag[0] }}
@@ -27,7 +27,7 @@ header-img: "img/introheader.jpg"
                 <a href="#all_tags" id="show_all_tags">Show All Tags</a>
                 <div id="all_tags" style="display: none;">
                 {% for tag in sorted_tags %}
-                <a data-sort="{{ site.posts.size | minus: tag[1] | size | prepend: '0000' | slice: -4, 4 }}"
+                <a data-sort="{{ site.posts.size | minus: tag[1] | length | prepend: '0000' | slice: -4, 4 }}"
                        data-encode="{{ tag[0] | strip | url_encode }}" class="tag-button" title="{{ tag[0] }}"
                        rel="{{ tag[1].size }}">
                         {{ tag[0] }}
