@@ -17,24 +17,36 @@ https://github.com/kitian616/jekyll-TeXt-theme
 	<div class="row">
 		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 			<!-- Tags (as filter) -->
-			<div id='tag_cloud' class="tags tags-sup js-tags">
-				<a class="tag-button--all" data-encode="">
-					Show All
-					<sup>{{site.posts.size}}</sup>
-				</a>
+			{% assign sorted_tags = site.tags | sort: 'size' | reverse %}
+{% assign top_tags = sorted_tags | slice: 0, 5 %}
 
-				{% capture tags %}
-				{% for tag in site.tags %}
-				<a data-sort="{{ site.posts.size | minus: tag[1].size | prepend: '0000' | slice: -4, 4 }}"
-					data-encode="{{ tag[0] | strip | url_encode }}" class="tag-button" title="{{ tag[0] }}"
-					rel="{{ tag[1].size }}">
-					{{ tag[0] }}
-					<sup>{{tag[1].size}}</sup>
-				</a>__SEPERATOR__
-				{% endfor %}
-				{% endcapture %}
-				{{ tags | split:'__SEPERATOR__' | sort }}
-			</div>
+<!-- Top 5 tags -->
+<div id="top-tags">
+{% for tag in top_tags %}
+<a data-sort="{{ site.posts.size | minus: tag[1].size | prepend: '0000' | slice: -4, 4 }}"
+    data-encode="{{ tag[0] | strip | url_encode }}" class="tag-button" title="{{ tag[0] }}"
+    rel="{{ tag[1].size }}">
+    {{ tag[0] }}
+    <sup>{{tag[1].size}}</sup>
+</a>
+{% endfor %}
+</div>
+
+<!-- Show all tags button -->
+<button id="show-all-tags-button">Show All Tags</button>
+
+<!-- All tags (hidden by default) -->
+<div id="all-tags" style="display: none;">
+{% for tag in sorted_tags %}
+<a data-sort="{{ site.posts.size | minus: tag[1].size | prepend: '0000' | slice: -4, 4 }}"
+    data-encode="{{ tag[0] | strip | url_encode }}" class="tag-button" title="{{ tag[0] }}"
+    rel="{{ tag[1].size }}">
+    {{ tag[0] }}
+    <sup>{{tag[1].size}}</sup>
+</a>
+{% endfor %}
+</div>
+
 
 			<!-- Article List -->
 			<div class="mini-post-list js-result d-none">
