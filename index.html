@@ -15,32 +15,33 @@ header-mask: 0.3
     {% assign post_seconds = post.date | date: '%s' % | plus: 0 %}
     {% if post_seconds >= week_ago %}
         <div class="post-preview">
-            <a href="{{ post.url | prepend: site.baseurl }}">
-                <!-- Category and Subcategory -->
-                <h4 class="post-category">
-                    {{ post.category }}
-                    {% if post.subcategory %}
-                        => {{ post.subcategory }}
-                    {% endif %}
-                </h4>
-                
-                <!-- Title -->
-                <h2 class="post-title">
-                    {{ post.title }}
-                </h2>
+            <!-- Category and Subcategory -->
+            <h4 class="post-category">
+                <em>{{ post.subcategory }} in {{ post.category }}</em>
+            </h4>
 
-                <!-- Subtitle -->
+            <!-- Title -->
+            <h2 class="post-title">
+                <a href="{{ post.url | prepend: site.baseurl }}">
+                    {{ post.title }}
+                </a>
+            </h2>
+
+            <!-- Subtitle and Date -->
+            <div style="display: flex; justify-content: space-between;">
                 {% if post.subtitle %}
                 <h3 class="post-subtitle">
-                    {{ post.subtitle }}
+                    <a href="{{ post.url | prepend: site.baseurl }}">
+                        {{ post.subtitle }}
+                    </a>
                 </h3>
                 {% endif %}
-            </a>
-
-            <!-- Date -->
-            <p class="post-meta">
-                {{ post.date | date: "%Y.%m.%d" }}
-            </p>
+                <p class="post-meta">
+                    {{ post.date | date: "%Y.%m.%d" }}
+                </p>
+            </div>
         </div>
+        <hr style="border-top: 1px solid black;">
     {% endif %}
 {% endfor %}
+
