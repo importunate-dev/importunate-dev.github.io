@@ -5,10 +5,6 @@ description: "아카이브 저장"
 header-img: "img/introheader.jpg"
 ---
 
-<!--
-Credits: this page shamelessly borrowed a lot from:
-https://github.com/kitian616/jekyll-TeXt-theme
--->
 <!-- Page Header -->
 {% include intro-header.html type='page' short=true %}
 
@@ -18,70 +14,65 @@ https://github.com/kitian616/jekyll-TeXt-theme
 		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 			<!-- Tags (as filter) -->
 			<div id='tag_cloud' class="tags tags-sup js-tags">
-				<a class="tag-button--all" data-encode="">
-					Show All
-					<sup>{{site.posts.size}}</sup>
-				</a>
-
-				{% capture tags %}
-				{% for tag in site.tags %}
-				<a data-sort="{{ site.posts.size | minus: tag[1].size | prepend: '0000' | slice: -4, 4 }}"
-					data-encode="{{ tag[0] | strip | url_encode }}" class="tag-button" title="{{ tag[0] }}"
-					rel="{{ tag[1].size }}">
-					{{ tag[0] }}
-					<sup>{{tag[1].size}}</sup>
-				</a>__SEPERATOR__
-				{% endfor %}
-				{% endcapture %}
-				{{ tags | split:'__SEPERATOR__' | sort }}
-			</div>
+                <span>Tag Top 5:</span>
+                {% assign sorted_tags = site.tags | sort: 'size' | reverse %}
+                {% for tag in sorted_tags limit:5 %}
+                <a data-sort="{{ site.posts.size | minus: tag[1].size | prepend: '0000' | slice: -4, 4 }}"
+                   data-encode="{{ tag[0] | strip | url_encode }}" class="tag-button" title="{{ tag[0] }}"
+                   rel="{{ tag[1].size }}">
+                    {{ tag[0] }}
+                    <sup>{{tag[1].size}}</sup>
+                </a>
+                {% endfor %}
+                <a href="#all_tags" id="show_all_tags">Show All Tags</a>
+                <div id="all_tags" style="display: none;">
+                {% for tag in sorted_tags %}
+                    <a data-sort="{{ site.posts.size | minus: tag[1].size | prepend: '0000' | slice: -4, 4 }}"
+                       data-encode="{{ tag[0] | strip | url_encode }}" class="tag-button" title="{{ tag[0] }}"
+                       rel="{{ tag[1].size }}">
+                        {{ tag[0] }}
+                        <sup>{{tag[1].size}}</sup>
+                    </a>
+                {% endfor %}
+                </div>
+            </div>
 
 			<!-- Article List -->
 			<div class="mini-post-list js-result d-none">
-				{%- assign _sorted_list = site.posts -%}
-				{%- assign _sorted_list = _sorted_list | sort: 'date' -%}
-				{%- assign _sorted_list = _sorted_list | reverse -%}
-
-
-				{%- for _article in _sorted_list -%}
-				{%- assign _tags = '' -%}
-				{%- for _tag in _article.tags -%}
-				{%- assign _tag_encode = _tag | strip | url_encode -%}
-				{%- if forloop.last -%}
-				{%- assign _tags = _tags | append: _tag_encode -%}
-				{%- else -%}
-				{%- assign _tags = _tags | append: _tag_encode | append: ',' -%}
+				{%- assign sorted_list = site.posts | sort: 'date' -%}
+				{%- assign sorted_list = sorted_list | reverse -%}
+				{%- assign current_date = '' -%}
+				{%- for article in sorted_list -%}
+				{%- assign article_date = article.date | date: "%Y.%m.%d" -%}
+				{%- if article_date != current_date -%}
+				<h3>{{ article_date }}</h3>
+				{%- assign current_date = article_date -%}
 				{%- endif -%}
-				{%- endfor -%}
-
-				{% comment %} group by year {% endcomment %}
-				{%- assign _currentdate = _article.date | date: '%Y' -%}
-				{%- if _currentdate != _date -%}
-				{%- unless forloop.first -%}</section>{%- endunless -%}
-				<section>
-					<span class="fa listing-seperator">
-						<span class="tag-text">{{ _currentdate }}</span>
-					</span>
-					{%- assign _date = _currentdate -%}
-					{%- endif -%}
-
-					<div class="post-preview item" data-tags="{{ _tags }}">
-						<a href="{{ _article.url | prepend: site.baseurl }}">
-							<h2 class="post-title">
-								{{ _article.title }}
-							</h2>
-							{% if _article.subtitle %}
-							<h3 class="post-subtitle">
-								{{ _article.subtitle }}
-							</h3>
-							{% endif %}
-						</a>
-						<hr>
-					</div>
-					{%- if forloop.last -%}
-				</section>{%- endif -%}
+				<div class="post-preview item">
+					<a href="{{ article.url | prepend: site.baseurl }}">
+						<h4 class="post-title">
+							{{ article.title }}
+						</h4>
+						{% if article.subtitle %}
+						<p class="post-subtitle">
+							{{ article.subtitle }}
+						</p>
+						{% endif %}
+					</a>
+				</div>
 				{% endfor %}
 			</div>
 		</div>
 	</div>
 </div>
+
+<script>
+document.getElementById("show_all_tags").addEventListener("click", function() {
+  var allTags = document.getElementById("all_tags");
+  if (allTags.style.display === "none") {
+    allTags.style.display = "block";
+  } else {
+    allTags.style.display = "none";
+  }
+});
+</script>
