@@ -4,9 +4,6 @@ description: "블로그에 오신 것을 환영합니다."
 header-img: "img/introheader.jpg"
 header-mask: 0.3
 ---
-
-우측 상단의 게시판이 있습니다!<br>
-<br>
 <h3>최근 일주일 간 게시물</h3>
 {% assign current_date = 'now' | date: '%s' %}
 {% assign week_ago = current_date | minus: 604800 %}
@@ -31,10 +28,7 @@ header-mask: 0.3
             <div style="display: flex; justify-content: space-between;">
                 {% if post.subtitle %}
                 <h3 class="post-subtitle">
-                    <a href="{{ post.url | prepend: site.baseurl }}">
-                        {{ post.subtitle }}
-                    </a>
-                </h3>
+                </h5>
                 {% endif %}
                 <p class="post-meta">
                     {{ post.date | date: "%Y.%m.%d" }}
