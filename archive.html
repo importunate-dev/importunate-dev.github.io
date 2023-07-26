@@ -31,8 +31,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 					{{ tag[0] }}
 					<sup>{{tag[1].size}}</sup>
 				</a>__SEPERATOR__
-				{% endfor %}
-				{% endcapture %}
+				{% endfor %}{% endcapture %}
 				{{ tags | split:'__SEPERATOR__' | sort }}
 			</div>
 
