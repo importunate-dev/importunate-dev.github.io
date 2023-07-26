@@ -21,6 +21,8 @@ header-img: "img/introheader.jpg"
 
 				{% capture tags %}
 				{% for tag in site.tags %}
+				{{ tag[0] }}: {{ tag[1].size | inspect }}
+				{% endfor %}
 				<a data-sort="{{ site.posts.size | minus: tag[1].size | prepend: '0000' | slice: -4, 4 }}"
 					data-encode="{{ tag[0] | strip | url_encode }}" class="tag-button" title="{{ tag[0] }}"
 					rel="{{ tag[1].size }}">
