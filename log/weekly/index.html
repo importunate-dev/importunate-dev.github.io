@@ -1,17 +1,17 @@
 ---
 layout: page
-title: "DAILY"
-description: " 일간 학습 기록 "
+title: "WEEKLY"
+description: " 주간 학습 기록 "
 header-img: "img/introheader.jpg"
 header-mask: 0.3
 hide-in-nav: true
 ---
 
-<h1>DAILY</h1>
+<h1>WEEKLY</h1>
 
 <ul>
 {% for post in site.posts %}
-  {% if post.category == 'log' and post.subcategory == 'daily' %}
+  {% if post.category == 'log' and post.subcategory == 'weekly' %}
   <div class="post-preview">
     <a href="{{ post.url | prepend: site.baseurl }}">
         <h2 class="post-title">
