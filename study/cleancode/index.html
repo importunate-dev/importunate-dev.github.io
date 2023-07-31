@@ -1,17 +1,18 @@
 ---
 layout: page
-title: "study"
-description: "개인 공부 기록실"
+title: "Clean Code"
+description: " 책너두 5기, 클린코드 "
 header-img: "img/introheader.jpg"
 header-mask: 0.3
-subcategory: 
-    - algorithm 
-    - csapp
-    - cleancode
+hide-in-nav: true
 ---
 
-{% for post in site.categories.study %}
-<div class="post-preview">
+<h1>Clean Code</h1>
+
+<ul>
+{% for post in site.posts %}
+  {% if post.category == 'study' and post.subcategory == 'cleancode' %}
+  <div class="post-preview">
     <a href="{{ post.url | prepend: site.baseurl }}">
         <h2 class="post-title">
             {{ post.title }}
@@ -27,4 +28,6 @@ subcategory:
     </p>
 </div>
 <hr>
+  {% endif %}
 {% endfor %}
+</ul>
