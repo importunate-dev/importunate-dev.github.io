@@ -1,19 +1,18 @@
 ---
 layout: page
-title: "study"
-description: "개인 공부 기록실"
+title: "MySQL8.0"
+description: " Real MySQL8.0 "
 header-img: "img/introheader.jpg"
 header-mask: 0.3
-subcategory: 
-    - algorithm 
-    - csapp
-    - cleancode
-    - network
-    - MySQL
+hide-in-nav: true
 ---
 
-{% for post in site.categories.study %}
-<div class="post-preview">
+<h1>MySQL</h1>
+
+<ul>
+{% for post in site.posts %}
+  {% if post.category == 'study' and post.subcategory == 'MySQL' %}
+  <div class="post-preview">
     <a href="{{ post.url | prepend: site.baseurl }}">
         <h2 class="post-title">
             {{ post.title }}
@@ -29,4 +28,6 @@ subcategory:
     </p>
 </div>
 <hr>
+  {% endif %}
 {% endfor %}
+</ul>
