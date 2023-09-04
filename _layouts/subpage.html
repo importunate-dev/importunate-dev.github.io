@@ -39,8 +39,6 @@ header-img: "img/introheader.jpg"
       {% assign parts = page.path | split: "/" %} {% assign current_category =
       parts[0] %}
 
-      <p>Current Category: {{ current_category }}</p>
-
       <ul class="sub-categories-list">
         {% comment %} Create an empty array to store unique subcategories {%
         endcomment %} {% assign listed_subcategories = "" | split: "," %} {% for
@@ -48,17 +46,12 @@ header-img: "img/introheader.jpg"
         unless listed_subcategories contains post.subcategory %} {% assign
         listed_subcategories = listed_subcategories | push: post.subcategory %}
         <li>
-          <a href="{{ site.baseurl }}/categories/{{ post.subcategory }}"
+          <a href="{{ site.baseurl }}/{{ current_caregory }}/{{ post.subcategory }}"
             >{{ post.subcategory }}</a
           >
         </li>
         {% endunless %} {% endif %} {% endfor %}
       </ul>
-      <!-- Debugging code -->
-      <p>
-        Number of posts in {{ current_category }}: {{ site.posts | where:
-        "category", current_category | size }}
-      </p>
 
       <!-- Short About -->
       {% include short-about.html %}
