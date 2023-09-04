@@ -22,7 +22,6 @@ header-img: "img/introheader.jpg"
       class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 sidebar-container"
     >
       {% include sub-category.html %}
-
     </div>
     {% else %}
     <!-- USE SIDEBAR -->
@@ -36,6 +35,19 @@ header-img: "img/introheader.jpg"
     <div
       class="col-lg-3 col-lg-offset-0 col-md-3 col-md-offset-0 col-sm-12 col-xs-12 sidebar-container"
     >
+      <!-- Display sub-categories of the current category -->
+      <ul class="sub-categories-list">
+        {% assign current_category = 'study' %}
+        <!-- Manual assignment for testing, replace with dynamic assignment if needed -->
+        {% for post in site.posts %} {% if post.category == current_category %}
+        {% unless post.subcategory contains post.subcategory %}
+        <li>
+          <a href="{{ site.baseurl }}/categories/{{ post.subcategory }}"
+            >{{ post.subcategory }}</a
+          >
+        </li>
+        {% endunless %} {% endif %} {% endfor %}
+      </ul>
       <!-- Featured board -->
       {% include sub-category.html %}
 
