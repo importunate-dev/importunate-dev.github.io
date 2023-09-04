@@ -36,11 +36,13 @@ header-img: "img/introheader.jpg"
       class="col-lg-3 col-lg-offset-0 col-md-3 col-md-offset-0 col-sm-12 col-xs-12 sidebar-container"
     >
       <!-- Display sub-categories of the current category -->
+      {% assign current_category = page.category %}
       <ul class="sub-categories-list">
-        {% assign current_category = 'study' %}
-        <!-- Manual assignment for testing, replace with dynamic assignment if needed -->
-        {% for post in site.posts %} {% if post.category == current_category %}
-        {% unless post.subcategory contains post.subcategory %}
+        {% comment %} Create an empty array to store unique subcategories {%
+        endcomment %} {% assign listed_subcategories = "" | split: "," %} {% for
+        post in site.posts %} {% if post.category == current_category %} {%
+        unless listed_subcategories contains post.subcategory %} {% assign
+        listed_subcategories = listed_subcategories | push: post.subcategory %}
         <li>
           <a href="{{ site.baseurl }}/categories/{{ post.subcategory }}"
             >{{ post.subcategory }}</a
@@ -48,8 +50,6 @@ header-img: "img/introheader.jpg"
         </li>
         {% endunless %} {% endif %} {% endfor %}
       </ul>
-      <!-- Featured board -->
-      {% include sub-category.html %}
 
       <!-- Short About -->
       {% include short-about.html %}
