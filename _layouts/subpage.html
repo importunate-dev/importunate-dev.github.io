@@ -37,7 +37,7 @@ header-img: "img/introheader.jpg"
     >
       <!-- Extract category from the page path -->
       {% assign parts = page.path | split: "/" %} {% assign current_category =
-      parts[1] %}
+      parts[0] %}
 
       <p>Current Category: {{ current_category }}</p>
 
