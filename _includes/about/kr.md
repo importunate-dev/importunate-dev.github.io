@@ -1,31 +1,21 @@
-- 배준수, Bae Junsu, 裵準洙
+![page1](https://github.com/junsoopooh/junsoopooh.github.io/blob/master/img/portfolio1.PNG?raw=true)
 
-- 1994.04.11
+![page2](https://github.com/junsoopooh/junsoopooh.github.io/blob/master/img/portfolio2.PNG?raw=true)
 
-- 경기도 안산 출생
+![page3](https://github.com/junsoopooh/junsoopooh.github.io/blob/master/img/portfolio3.PNG?raw=true)
 
-- 경기도 화성 거주
+![page4](https://github.com/junsoopooh/junsoopooh.github.io/blob/master/img/portfolio4.PNG?raw=true)
 
-- 식품영양학과 졸업
+![page5](https://github.com/junsoopooh/junsoopooh.github.io/blob/master/img/portfolio5.PNG?raw=true)
 
-- 2023년 1월 프로그래밍 공부 시작
+![page6](https://github.com/junsoopooh/junsoopooh.github.io/blob/master/img/portfolio6.PNG?raw=true)
 
-- Python, C 경험
+![page7](https://github.com/junsoopooh/junsoopooh.github.io/blob/master/img/portfolio7.PNG?raw=true)
 
-- 백엔드
+![page8](https://github.com/junsoopooh/junsoopooh.github.io/blob/master/img/portfolio8.PNG?raw=true)
 
-- 관심분야 : 게임, 축구
+![page9](https://github.com/junsoopooh/junsoopooh.github.io/blob/master/img/portfolio9.PNG?raw=true)
 
-- SW 사관학교 정글 6기
+![page10](https://github.com/junsoopooh/junsoopooh.github.io/blob/master/img/portfolio10.PNG?raw=true)
 
-- 언리얼을 위한 C++ 개인 공부 진행 예정
-
-- 그램 13Z980-GA36K 사용중
-
-- 프로세서 Intel(R) Core(TM) i3-8130U CPU @ 2.20GHz   2.21 GHz
-
-- RAM 8.00GB
-
-- junsoopooh@naver.com
-
-    
+![page11](https://github.com/junsoopooh/junsoopooh.github.io/blob/master/img/portfolio11.PNG?raw=true)
