@@ -1,24 +1,25 @@
-{% comment %}
-    @param {boolean} bottom - bottom will render <hr> 
-{% endcomment %}
-
-{% if include.bottom %}
-    <hr class="hidden-sm hidden-xs">
+{% comment %} @param {boolean} bottom - bottom will render
+<hr />
+{% endcomment %} {% if include.bottom %}
+<hr class="hidden-sm hidden-xs" />
 {% endif %}
-<h3>모아보기</h3>
 <div class="boards">
-    {% if page.subcategory and page.subcategory.size > 0 %}
-        {% for subdir in page.subcategory %}
-            <a href="{{ site.baseurl }}/{{ page.path | remove: 'index.html' }}/{{ subdir }}"
-                title="{{ subdir }}"
-                rel="{{ subdir }}"
-                style="display: block;">{{ subdir }}</a>
-        {% endfor %}
-    {% else %}
-        <a href="{{ site.baseurl }}/{{ page.path | remove: 'index.html' }}"
-            title="{{ page.title }}"
-            rel="{{ page.path }}"
-            style="display: block;">{{ page.title }}</a>
-    {% endif %}
+  {% if page.subcategory and page.subcategory.size > 0 %} {% for subdir in
+  page.subcategory %}
+  <a
+    href="{{ site.baseurl }}/{{ page.path | remove: 'index.html' }}{{ subdir }}"
+    title="{{ subdir }}"
+    rel="{{ subdir }}"
+    style="display: block"
+    >{{ subdir }}</a
+  >
+  {% endfor %} {% else %}
+  <a
+    href="{{ site.baseurl }}{{ page.path | remove: 'index.html' }}"
+    title="{{ page.title }}"
+    rel="{{ page.path }}"
+    style="display: block"
+    >{{ page.title }}</a
+  >
+  {% endif %}
 </div>
-
