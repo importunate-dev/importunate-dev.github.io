@@ -46,7 +46,7 @@ header-img: "img/introheader.jpg"
         unless listed_subcategories contains post.subcategory %} {% assign
         listed_subcategories = listed_subcategories | push: post.subcategory %}
         <li>
-          <a href="{{ site.baseurl }}/{{ current_caregory }}/{{ post.subcategory }}"
+          <a href="{{ site.baseurl }}/{{ current_category }}/{{ post.subcategory }}"
             >{{ post.subcategory }}</a
           >
         </li>
