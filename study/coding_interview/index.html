@@ -1,0 +1,26 @@
+---
+layout: subpage
+title: "코딩 인터뷰"
+description: " 코딩 인터뷰 완전 분석 "
+header-img: "../img/introheader.jpg"
+header-mask: 0.3
+hide-in-nav: true
+---
+
+<h1>코딩 인터뷰 완전 분석석</h1>
+
+<ul>
+  {% for post in site.posts %} {% if post.category == 'study' and
+  post.subcategory == 'coding_interview' %}
+  <div class="post-preview">
+    <a href="{{ post.url | prepend: site.baseurl }}">
+      <h2 class="post-title">{{ post.title }}</h2>
+      {% if post.subtitle %}
+      <h3 class="post-subtitle">{{ post.subtitle }}</h3>
+      {% endif %}
+    </a>
+    <p class="post-meta">{{ post.date | date: "%Y.%m.%d" }}</p>
+  </div>
+  <hr />
+  {% endif %} {% endfor %}
+</ul>
