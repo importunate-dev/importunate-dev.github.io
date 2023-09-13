@@ -57,6 +57,8 @@ kramdown:
     block:
       line_numbers: true
       start_line: 1
+    math_engine: mathjax
+    math_engine_opts: {}
 
 # Disqus settings
 disqus_username: junsoopooh.github.io

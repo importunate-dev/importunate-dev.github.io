@@ -110,4 +110,31 @@
     gtag("config", "G-QZMSC32TSX");
   </script>
 
+  <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: {
+          equationNumbers: {
+            autoNumber: "AMS"
+          }
+        },
+        SVG: {
+          scale: 90
+        },
+        tex2jax: {
+          inlineMath: [ ['$','$'] ],
+          displayMath: [ ['$$','$$'] ],
+          processEscapes: true,
+        }
+      });
+      MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+    	  alert("Math Processing Error: "+message[1]);
+    	});
+    MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+    	  alert("Math Processing Error: "+message[1]);
+    	});
+  </script>
+  <script
+    type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG"
+  ></script>
 </head>
