@@ -2,39 +2,37 @@
 layout: page
 title: "About"
 description: ""
-header-img: "img/introheader.jpg"
+header-img: "https://cdn.jsdelivr.net/gh/junsoopooh/junsoopooh.github.io/img/introheader.jpg"
 header-mask: 0.3
 ---
 
 <div class="kr post-container">
-    {% capture about_kr %}{% include about/kr.md %}{% endcapture %}
-    {{ about_kr | markdownify }}
+  {% capture about_kr %}{% include about/kr.md %}{% endcapture %} {{ about_kr |
+  markdownify }}
 </div>
 
 {% if site.disqus_username %}
 
 <div id="disqus_thread"></div>
 <script>
-    (function() {
-        var d = document, s = d.createElement('script');
-        
-        s.src = 'https://junsoopooh-github-io.disqus.com/embed.js';
-        
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
+  (function () {
+    var d = document,
+      s = d.createElement("script");
+
+    s.src = "https://junsoopooh-github-io.disqus.com/embed.js";
+
+    s.setAttribute("data-timestamp", +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript" rel="nofollow"
+    >comments powered by Disqus.</a
+  ></noscript
+>
 
 {% endif %}
-
-
-
-
-
-
-
-
 
 <!-- {% if site.disqus_username %} -->
 <!-- disqus 评论框 start -->

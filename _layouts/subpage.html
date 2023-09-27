@@ -1,6 +1,6 @@
 ---
 layout: default
-header-img: "img/introheader.jpg"
+header-img: "https://cdn.jsdelivr.net/gh/junsoopooh/junsoopooh.github.io/img/introheader.jpg"
 ---
 
 <!-- Page Header -->
@@ -46,7 +46,8 @@ header-img: "img/introheader.jpg"
         unless listed_subcategories contains post.subcategory %} {% assign
         listed_subcategories = listed_subcategories | push: post.subcategory %}
         <li>
-          <a href="{{ site.baseurl }}/{{ current_category }}/{{ post.subcategory }}"
+          <a
+            href="{{ site.baseurl }}/{{ current_category }}/{{ post.subcategory }}"
             >{{ post.subcategory }}</a
           >
         </li>

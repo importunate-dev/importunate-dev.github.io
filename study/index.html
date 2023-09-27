@@ -2,31 +2,25 @@
 layout: subpage
 title: "study"
 description: "개인 공부 기록실"
-header-img: "img/introheader.jpg"
+header-img: "https://cdn.jsdelivr.net/gh/junsoopooh/junsoopooh.github.io/img/introheader.jpg"
 header-mask: 0.3
-subcategory: 
-    - algorithm 
-    - csapp
-    - cleancode
-    - network
-    - MySQL
+subcategory:
+  - algorithm
+  - csapp
+  - cleancode
+  - network
+  - MySQL
 ---
 
 {% for post in site.categories.study %}
 <div class="post-preview">
-    <a href="{{ post.url | prepend: site.baseurl }}">
-        <h2 class="post-title">
-            {{ post.title }}
-        </h2>
-        {% if post.subtitle %}
-        <h3 class="post-subtitle">
-            {{ post.subtitle }}
-        </h3>
-        {% endif %}
-    </a>
-    <p class="post-meta">
-        {{ post.date | date: "%Y.%m.%d" }}
-    </p>
+  <a href="{{ post.url | prepend: site.baseurl }}">
+    <h2 class="post-title">{{ post.title }}</h2>
+    {% if post.subtitle %}
+    <h3 class="post-subtitle">{{ post.subtitle }}</h3>
+    {% endif %}
+  </a>
+  <p class="post-meta">{{ post.date | date: "%Y.%m.%d" }}</p>
 </div>
-<hr>
+<hr />
 {% endfor %}
