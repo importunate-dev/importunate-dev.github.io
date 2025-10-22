@@ -1,13 +1,38 @@
+# Jekyll 생성 파일
 _site
+.jekyll-cache
+.jekyll-metadata
+
+# 초안 및 아카이브
 _posts/_draft
 _posts/_archive
 _archive
-node_modules
-.vscode
-*.log
+
+# Ruby/Bundler
+vendor/
+.bundle/
+*.gem
 *.lock
-*.sh
+Gemfile.lock
+
+# Node.js
+node_modules
+
+# 로그 파일
+*.log
+jekyll.log
+nohup.out
+
+# IDE/Editor
+.vscode
+.idea
+
+# OS 파일
 .DS_Store
-.jekyll-cache
 */.DS_Store
 */*/.DS_Store
+
+# 임시 파일
+*.sh
+*.swp
+*~
