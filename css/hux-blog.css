@@ -22,7 +22,8 @@
   text-decoration: none;
 }
 .sidebar-container a {
-  color: #bfbfbf !important;
+  color: #000 !important;
+  font-weight: bold;
 }
 .sidebar-container a:hover,
 .sidebar-container a:active {

@@ -16,6 +16,12 @@ https://github.com/kitian616/jekyll-TeXt-theme
 <div class="container">
 	<div class="row">
 		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+			<!-- Tag Search -->
+			<div style="margin-bottom: 20px;">
+				<input type="text" id="tag-search-input" placeholder="태그 검색..." 
+					style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px;">
+			</div>
+			
 			<!-- Tags (as filter) -->
 			<div id='tag_cloud' class="tags tags-sup js-tags">
 				<a class="tag-button--all" data-encode="">
@@ -57,11 +63,13 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				{% comment %} group by year {% endcomment %}
 				{%- assign _currentdate = _article.date | date: '%Y' -%}
 				{%- if _currentdate != _date -%}
-				{%- unless forloop.first -%}</section>{%- endunless -%}
+				{%- unless forloop.first -%}</div></section>{%- endunless -%}
 				<section>
-					<span class="fa listing-seperator">
+					<span class="fa listing-seperator year-header" style="cursor: pointer; user-select: none;">
+						<span class="year-toggle" style="margin-right: 10px;">▼</span>
 						<span class="tag-text">{{ _currentdate }}</span>
 					</span>
+					<div class="year-content">
 					{%- assign _date = _currentdate -%}
 					{%- endif -%}
 
@@ -79,7 +87,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 						<hr>
 					</div>
 					{%- if forloop.last -%}
-				</section>{%- endif -%}
+				</div></section>{%- endif -%}
 				{% endfor %}
 			</div>
 		</div>

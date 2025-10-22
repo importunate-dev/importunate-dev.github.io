@@ -1,16 +1,12 @@
 ---
 layout: page
-description: "백엔드 개발자 블로그입니다. SQL, CS, 알고리즘, 파이썬, AWS 등을 다양하게 공부하고 업로드하고 있습니다."
+description: "백엔드 개발자 블로그입니다."
 header-img: "https://cdn.jsdelivr.net/gh/junsoopooh/junsoopooh.github.io/img/introheader.webp"
 header-mask: 0.3
 ---
-<h3>최근 일주일 간 게시물</h3>
-{% assign current_date = 'now' | date: '%s' %}
-{% assign week_ago = current_date | minus: 604800 %}
+<h3>최근 게시물</h3>
 
-{% for post in site.posts %}
-    {% assign post_seconds = post.date | date: '%s' % | plus: 0 %}
-    {% if post_seconds >= week_ago %}
+{% for post in site.posts limit:5 %}
         <div class="post-preview">
             <!-- Category and Subcategory -->
             <h4 class="post-category">
@@ -36,6 +32,5 @@ header-mask: 0.3
             </div>
         </div>
         <hr style="border-top: 1px solid black;">
-    {% endif %}
 {% endfor %}
 

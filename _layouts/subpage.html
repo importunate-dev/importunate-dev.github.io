@@ -42,16 +42,18 @@ header-img: "https://cdn.jsdelivr.net/gh/junsoopooh/junsoopooh.github.io/img/int
       <ul class="sub-categories-list">
         {% comment %} Create an empty array to store unique subcategories {%
         endcomment %} {% assign listed_subcategories = "" | split: "," %} {% for
-        post in site.posts %} {% if post.category == current_category %} {%
-        unless listed_subcategories contains post.subcategory %} {% assign
+        post in site.posts %} {% if post.category == current_category %} {% if
+        post.subcategory and post.subcategory != "" %} {% unless
+        listed_subcategories contains post.subcategory %} {% assign
         listed_subcategories = listed_subcategories | push: post.subcategory %}
-        <li>
+        <li style="margin-bottom: 8px">
           <a
             href="{{ site.baseurl }}/{{ current_category }}/{{ post.subcategory }}"
+            style="font-size: 21px; color: #000"
             >{{ post.subcategory }}</a
           >
         </li>
-        {% endunless %} {% endif %} {% endfor %}
+        {% endunless %} {% endif %} {% endif %} {% endfor %}
       </ul>
 
       <!-- Short About -->

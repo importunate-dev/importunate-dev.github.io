@@ -46,6 +46,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
     var $lastFocusButton = null;
     var sectionTopArticleIndex = [];
     var hasInit = false;
+    var allTags = []; // 모든 태그 저장
 
     $sections.each(function() {
       sectionArticles.push($(this).find('.item'));
@@ -58,6 +59,44 @@ https://github.com/kitian616/jekyll-TeXt-theme
         index += $sections.eq(i).find('.item').length;
       }
       sectionTopArticleIndex.push(index);
+      
+      // 모든 태그를 배열에 저장 (게시글 수 기준 정렬)
+      $articleTags.each(function() {
+        allTags.push({
+          element: $(this),
+          count: parseInt($(this).attr('rel') || 0),
+          title: $(this).attr('title').toLowerCase()
+        });
+      });
+      
+      // 게시글 수 기준 내림차순 정렬
+      allTags.sort(function(a, b) {
+        return b.count - a.count;
+      });
+      
+      // 초기에는 상위 10개만 표시
+      showTopTags();
+    }
+    
+    function showTopTags(searchTerm) {
+      var filteredTags = allTags;
+      
+      // 검색어가 있으면 필터링
+      if (searchTerm && searchTerm.trim() !== '') {
+        var search = searchTerm.toLowerCase().trim();
+        filteredTags = allTags.filter(function(tag) {
+          return tag.title.indexOf(search) !== -1;
+        });
+      }
+      
+      // 모든 태그 숨기기
+      $articleTags.hide();
+      
+      // 필터링된 태그 중 상위 10개만 표시
+      var displayCount = Math.min(10, filteredTags.length);
+      for (var i = 0; i < displayCount; i++) {
+        filteredTags[i].element.show();
+      }
     }
 
     function searchButtonsByTag(_tag/*raw tag*/) {
@@ -137,6 +176,35 @@ https://github.com/kitian616/jekyll-TeXt-theme
 
     $tags.on('click', 'a', function() {   /* only change */
       tagSelect($(this).data('encode'), $(this));
+    });
+
+    // 태그 검색 기능
+    var $searchInput = $('#tag-search-input');
+    $searchInput.on('input', function() {
+      var searchTerm = $(this).val();
+      showTopTags(searchTerm);
+    });
+
+    // 연도별 아코디언 기능
+    // 초기 상태: 모든 연도 접기
+    $('.year-content').hide();
+    $('.year-toggle').text('►');
+    
+    // 연도 헤더 클릭 이벤트
+    $('.year-header').on('click', function() {
+      var $header = $(this);
+      var $content = $header.next('.year-content');
+      var $toggle = $header.find('.year-toggle');
+      
+      // 토글
+      $content.slideToggle(300);
+      
+      // 아이콘 변경
+      if ($toggle.text() === '►') {
+        $toggle.text('▼');
+      } else {
+        $toggle.text('►');
+      }
     });
 
   });
