@@ -5,36 +5,161 @@ header-img: "https://cdn.jsdelivr.net/gh/junsoopooh/junsoopooh.github.io/img/int
 header-mask: 0.3
 ---
 
-<h3>최근 게시물</h3>
+<h3>전체 게시물</h3>
 
-{% for post in site.posts limit:5 %}
-<div class="post-preview" style="margin-bottom: 15px">
-  <!-- Category and Subcategory -->
-  <p
-    class="post-category"
-    style="font-size: 13px; color: #777; margin-bottom: 5px"
-  >
-    <em>{{ post.subcategory }} in {{ post.category }}</em>
-  </p>
-
-  <!-- Title -->
-  <h4 class="post-title" style="margin-top: 0; margin-bottom: 8px">
-    <a href="{{ post.url | prepend: site.baseurl }}"> {{ post.title }} </a>
-  </h4>
-
-  <!-- Subtitle and Date -->
-  <div
-    style="display: flex; justify-content: space-between; align-items: center"
-  >
-    {% if post.subtitle %}
-    <p class="post-subtitle" style="font-size: 14px; color: #999; margin: 0">
-      {{ post.subtitle }}
+<!-- Posts List -->
+<div id="posts-container">
+  {% for post in site.posts %}
+  <div class="post-preview searchable-post" style="margin-bottom: 15px">
+    <!-- Category and Subcategory -->
+    <p
+      class="post-category"
+      style="font-size: 13px; color: #777; margin-bottom: 5px"
+    >
+      <em>{{ post.subcategory }} in {{ post.category }}</em>
     </p>
-    {% endif %}
-    <p class="post-meta" style="margin: 0; font-size: 13px">
-      {{ post.date | date: "%Y.%m.%d" }}
-    </p>
+
+    <!-- Title -->
+    <h4 class="post-title" style="margin-top: 0; margin-bottom: 8px">
+      <a href="{{ post.url | prepend: site.baseurl }}"> {{ post.title }} </a>
+    </h4>
+
+    <!-- Subtitle and Date -->
+    <div
+      style="display: flex; justify-content: space-between; align-items: center"
+    >
+      {% if post.subtitle %}
+      <p class="post-subtitle" style="font-size: 14px; color: #999; margin: 0">
+        {{ post.subtitle }}
+      </p>
+      {% endif %}
+      <p class="post-meta" style="margin: 0; font-size: 13px">
+        {{ post.date | date: "%Y.%m.%d" }}
+      </p>
+    </div>
   </div>
+  <hr class="post-divider" style="border-top: 1px solid #ddd; margin: 15px 0" />
+  {% endfor %}
 </div>
-<hr style="border-top: 1px solid #ddd; margin: 15px 0" />
-{% endfor %}
+
+<!-- Pagination -->
+<div id="pagination" style="text-align: center; margin-top: 30px">
+  <button
+    id="prev-btn"
+    style="
+      padding: 8px 16px;
+      margin: 0 5px;
+      border: 1px solid #ddd;
+      background: white;
+      cursor: pointer;
+      border-radius: 4px;
+    "
+  >
+    이전
+  </button>
+  <span id="page-numbers" style="margin: 0 10px"></span>
+  <button
+    id="next-btn"
+    style="
+      padding: 8px 16px;
+      margin: 0 5px;
+      border: 1px solid #ddd;
+      background: white;
+      cursor: pointer;
+      border-radius: 4px;
+    "
+  >
+    다음
+  </button>
+</div>
+
+<script>
+  $(document).ready(function () {
+    var $posts = $(".searchable-post");
+    var $dividers = $(".post-divider");
+    var $pagination = $("#pagination");
+    var $prevBtn = $("#prev-btn");
+    var $nextBtn = $("#next-btn");
+    var $pageNumbers = $("#page-numbers");
+    var totalPosts = $posts.length;
+    var postsPerPage = 5;
+    var currentPage = 1;
+
+    // 페이지네이션 렌더링
+    function renderPagination() {
+      var totalPages = Math.ceil(totalPosts / postsPerPage);
+
+      if (totalPages <= 1) {
+        $pagination.hide();
+        return;
+      }
+
+      $pagination.show();
+      $prevBtn.prop("disabled", currentPage === 1);
+      $nextBtn.prop("disabled", currentPage === totalPages);
+
+      // 페이지 번호 버튼 생성
+      $pageNumbers.empty();
+      var startPage = Math.max(1, currentPage - 2);
+      var endPage = Math.min(totalPages, currentPage + 2);
+
+      for (var i = startPage; i <= endPage; i++) {
+        var $pageBtn = $("<button></button>")
+          .text(i)
+          .css({
+            padding: "8px 12px",
+            margin: "0 2px",
+            border: "1px solid #ddd",
+            background: i === currentPage ? "#333" : "white",
+            color: i === currentPage ? "white" : "#333",
+            cursor: "pointer",
+            borderRadius: "4px",
+          })
+          .data("page", i)
+          .on("click", function () {
+            currentPage = $(this).data("page");
+            displayPage();
+          });
+        $pageNumbers.append($pageBtn);
+      }
+    }
+
+    // 현재 페이지 표시
+    function displayPage() {
+      var start = (currentPage - 1) * postsPerPage;
+      var end = start + postsPerPage;
+
+      $posts.hide();
+      $dividers.hide();
+
+      $posts.each(function (index) {
+        if (index >= start && index < end) {
+          $(this).show();
+          $dividers.eq(index).show();
+        }
+      });
+
+      renderPagination();
+      window.scrollTo(0, 0);
+    }
+
+    // 초기 표시
+    displayPage();
+
+    // 페이지네이션 버튼 이벤트
+    $prevBtn.on("click", function () {
+      if (currentPage > 1) {
+        currentPage--;
+        displayPage();
+      }
+    });
+
+    $nextBtn.on("click", function () {
+      var totalPages = Math.ceil(totalPosts / postsPerPage);
+      if (currentPage < totalPages) {
+        currentPage++;
+        displayPage();
+      }
+    });
+  });
+</script>

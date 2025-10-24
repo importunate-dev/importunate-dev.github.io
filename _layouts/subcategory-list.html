@@ -67,6 +67,37 @@ layout: subpage
   🔍 검색 결과가 없습니다.
 </div>
 
+<!-- Pagination -->
+<div id="pagination" style="text-align: center; margin-top: 30px">
+  <button
+    id="prev-btn"
+    style="
+      padding: 8px 16px;
+      margin: 0 5px;
+      border: 1px solid #ddd;
+      background: white;
+      cursor: pointer;
+      border-radius: 4px;
+    "
+  >
+    이전
+  </button>
+  <span id="page-numbers" style="margin: 0 10px"></span>
+  <button
+    id="next-btn"
+    style="
+      padding: 8px 16px;
+      margin: 0 5px;
+      border: 1px solid #ddd;
+      background: white;
+      cursor: pointer;
+      border-radius: 4px;
+    "
+  >
+    다음
+  </button>
+</div>
+
 <script>
   $(document).ready(function () {
     var $searchInput = $("#post-search-input");
@@ -74,7 +105,14 @@ layout: subpage
     var $dividers = $(".post-divider");
     var $postCount = $("#post-count");
     var $noResults = $("#no-results");
+    var $pagination = $("#pagination");
+    var $prevBtn = $("#prev-btn");
+    var $nextBtn = $("#next-btn");
+    var $pageNumbers = $("#page-numbers");
     var totalPosts = $posts.length;
+    var postsPerPage = 5;
+    var currentPage = 1;
+    var filteredPosts = [];
 
     // 한글 초성 추출 함수
     function getChosung(text) {
@@ -141,6 +179,64 @@ layout: subpage
       return false;
     }
 
+    // 페이지네이션 렌더링
+    function renderPagination() {
+      var totalPages = Math.ceil(filteredPosts.length / postsPerPage);
+
+      if (totalPages <= 1) {
+        $pagination.hide();
+        return;
+      }
+
+      $pagination.show();
+      $prevBtn.prop("disabled", currentPage === 1);
+      $nextBtn.prop("disabled", currentPage === totalPages);
+
+      // 페이지 번호 버튼 생성
+      $pageNumbers.empty();
+      var startPage = Math.max(1, currentPage - 2);
+      var endPage = Math.min(totalPages, currentPage + 2);
+
+      for (var i = startPage; i <= endPage; i++) {
+        var $pageBtn = $("<button></button>")
+          .text(i)
+          .css({
+            padding: "8px 12px",
+            margin: "0 2px",
+            border: "1px solid #ddd",
+            background: i === currentPage ? "#333" : "white",
+            color: i === currentPage ? "white" : "#333",
+            cursor: "pointer",
+            borderRadius: "4px",
+          })
+          .data("page", i)
+          .on("click", function () {
+            currentPage = $(this).data("page");
+            displayPage();
+          });
+        $pageNumbers.append($pageBtn);
+      }
+    }
+
+    // 현재 페이지 표시
+    function displayPage() {
+      var start = (currentPage - 1) * postsPerPage;
+      var end = start + postsPerPage;
+
+      $posts.hide();
+      $dividers.hide();
+
+      for (var i = 0; i < filteredPosts.length; i++) {
+        if (i >= start && i < end) {
+          filteredPosts[i].post.show();
+          filteredPosts[i].divider.show();
+        }
+      }
+
+      renderPagination();
+      window.scrollTo(0, 0);
+    }
+
     function updatePostCount(visibleCount) {
       if ($searchInput.val().trim() === "") {
         $postCount.text("총 " + totalPosts + "개의 글");
@@ -151,48 +247,60 @@ layout: subpage
         );
         if (visibleCount === 0) {
           $noResults.show();
+          $pagination.hide();
         } else {
           $noResults.hide();
         }
       }
     }
 
-    // 초기 카운트 표시
-    updatePostCount(totalPosts);
+    // 필터링 및 페이지 업데이트
+    function filterAndDisplay() {
+      var searchTerm = $searchInput.val().trim();
+      filteredPosts = [];
+      currentPage = 1;
 
-    $searchInput.on("input", function () {
-      var searchTerm = $(this).val().trim();
-      var visibleCount = 0;
+      $posts.each(function (index) {
+        var $post = $(this);
+        var $divider = $dividers.eq(index);
+        var title = $post.data("title") || "";
+        var subtitle = $post.data("subtitle") || "";
+        var date = $post.data("date") || "";
 
-      if (searchTerm === "") {
-        $posts.show();
-        $dividers.show();
-        visibleCount = totalPosts;
-      } else {
-        $posts.each(function (index) {
-          var $post = $(this);
-          var $divider = $dividers.eq(index);
-          var title = $post.data("title") || "";
-          var subtitle = $post.data("subtitle") || "";
-          var date = $post.data("date") || "";
+        if (
+          searchTerm === "" ||
+          matchesSearch(title, searchTerm) ||
+          matchesSearch(subtitle, searchTerm) ||
+          matchesSearch(date, searchTerm)
+        ) {
+          filteredPosts.push({ post: $post, divider: $divider });
+        }
+      });
 
-          // 제목, 부제목, 날짜 중 하나라도 매칭되면 표시
-          if (
-            matchesSearch(title, searchTerm) ||
-            matchesSearch(subtitle, searchTerm) ||
-            matchesSearch(date, searchTerm)
-          ) {
-            $post.show();
-            $divider.show();
-            visibleCount++;
-          } else {
-            $post.hide();
-            $divider.hide();
-          }
-        });
+      updatePostCount(filteredPosts.length);
+      displayPage();
+    }
+
+    // 초기 표시
+    filterAndDisplay();
+
+    // 검색 입력 이벤트
+    $searchInput.on("input", filterAndDisplay);
+
+    // 페이지네이션 버튼 이벤트
+    $prevBtn.on("click", function () {
+      if (currentPage > 1) {
+        currentPage--;
+        displayPage();
       }
+    });
 
-      updatePostCount(visibleCount);
+    $nextBtn.on("click", function () {
+      var totalPages = Math.ceil(filteredPosts.length / postsPerPage);
+      if (currentPage < totalPages) {
+        currentPage++;
+        displayPage();
+      }
     });
   });
 </script>
