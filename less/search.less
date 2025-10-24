@@ -92,3 +92,37 @@
 .search-icon-close {
   font-size: 16px;
 }
+
+// Category Page Search
+#post-search-input {
+  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+  transition: all 0.3s ease;
+  
+  &:focus {
+    outline: none;
+    border-color: #337ab7;
+    box-shadow: 0 0 0 3px rgba(51, 122, 183, 0.1);
+  }
+  
+  &::placeholder {
+    color: #999;
+  }
+}
+
+#post-count {
+  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 500;
+}
+
+.searchable-post {
+  transition: opacity 0.2s ease;
+}
+
+// 검색 결과가 없을 때 메시지 스타일
+.no-results-message {
+  text-align: center;
+  padding: 40px 20px;
+  color: #999;
+  font-size: 16px;
+  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+}

@@ -4,12 +4,12 @@
   "description": "About an engineer & designer who loves web.",
   "icons": [
     {
-      "src": "icons/128.webp",
+      "src": "icons/128.png",
       "sizes": "128x128",
       "type": "image/png"
     },
     {
-      "src": "icons/512.webp",
+      "src": "icons/512.png",
       "sizes": "512x512",
       "type": "image/png"
     }

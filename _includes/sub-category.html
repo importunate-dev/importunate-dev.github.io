@@ -3,15 +3,14 @@
 {% endcomment %} {% if include.bottom %}
 <hr class="hidden-sm hidden-xs" />
 {% endif %}
-<ul class="boards" style="list-style-type: disc; padding-left: 20px">
+<ul class="sub-categories-list">
   {% if page.subcategory and page.subcategory.size > 0 %} {% for subdir in
   page.subcategory %}
-  <li style="margin-bottom: 8px">
+  <li>
     <a
       href="{{ site.baseurl }}/{{ page.path | remove: 'index.html' }}{{ subdir }}"
       title="{{ subdir }}"
       rel="{{ subdir }}"
-      style="font-size: 21px; color: #000"
       >{{ subdir }}</a
     >
   </li>
@@ -21,7 +20,6 @@
       href="{{ site.baseurl }}{{ page.path | remove: 'index.html' }}"
       title="{{ page.title }}"
       rel="{{ page.path }}"
-      style="font-size: 21px; color: #000"
       >{{ page.title }}</a
     >
   </li>

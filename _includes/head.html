@@ -53,7 +53,10 @@
   <link rel="manifest" href="{{ site.baseurl }}/pwa/manifest.json" />
 
   <!-- Favicon -->
-  <link rel="shortcut icon" href="{{ site.baseurl }}https://cdn.jsdelivr.net/gh/junsoopooh/junsoopooh.github.io/img/favicon.ico" />
+  <link
+    rel="shortcut icon"
+    href="{{ site.baseurl }}https://cdn.jsdelivr.net/gh/junsoopooh/junsoopooh.github.io/img/favicon.ico"
+  />
 
   <!-- Canonical URL -->
   <link
@@ -70,6 +73,14 @@
   site.baseurl }}">
 
   <!-- Custom Fonts -->
+  <!-- Google Fonts for Korean -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
+    rel="stylesheet"
+  />
+
   <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
   <!-- Hux change font-awesome CDN to qiniu -->
   <link
@@ -87,6 +98,9 @@
 
   <!-- ga & ba script hoook -->
   <script></script>
+
+  <!-- jQuery (load early for inline scripts) -->
+  <script src="{{ "/js/jquery.min.js" | prepend: site.baseurl }}"></script>
 
   <!-- Google AdSense -->
   <script

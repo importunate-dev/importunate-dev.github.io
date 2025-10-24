@@ -46,10 +46,9 @@ header-img: "https://cdn.jsdelivr.net/gh/junsoopooh/junsoopooh.github.io/img/int
         post.subcategory and post.subcategory != "" %} {% unless
         listed_subcategories contains post.subcategory %} {% assign
         listed_subcategories = listed_subcategories | push: post.subcategory %}
-        <li style="margin-bottom: 8px">
+        <li>
           <a
             href="{{ site.baseurl }}/{{ current_category }}/{{ post.subcategory }}"
-            style="font-size: 21px; color: #000"
             >{{ post.subcategory }}</a
           >
         </li>

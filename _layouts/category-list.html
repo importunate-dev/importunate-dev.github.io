@@ -2,27 +2,194 @@
 layout: page
 ---
 
-{% for post in site.categories[page.category] %}
-<div class="post-preview" style="margin-bottom: 15px">
-  <a href="{{ post.url | prepend: site.baseurl }}">
-    <h4
-      class="post-title"
-      style="margin-top: 0; margin-bottom: 5px; font-size: 18px"
-    >
-      {{ post.title }}
-    </h4>
-    {% if post.subtitle %}
-    <p
-      class="post-subtitle"
-      style="font-size: 14px; color: #999; margin: 0 0 5px 0"
-    >
-      {{ post.subtitle }}
-    </p>
-    {% endif %}
-  </a>
-  <p class="post-meta" style="margin: 0; font-size: 13px; color: #777">
-    {{ post.date | date: "%Y.%m.%d" }}
-  </p>
+<!-- Search Box -->
+<div style="margin-bottom: 20px">
+  <input
+    type="text"
+    id="post-search-input"
+    placeholder="제목 또는 내용으로 검색..."
+    style="
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+      font-family: 'Noto Sans KR', sans-serif;
+    "
+  />
 </div>
-<hr style="border-top: 1px solid #ddd; margin: 15px 0" />
-{% endfor %}
+
+<!-- Posts Count -->
+<div
+  id="post-count"
+  style="margin-bottom: 10px; color: #777; font-size: 14px"
+></div>
+
+<!-- Posts List -->
+<div id="posts-container">
+  {% for post in site.categories[page.category] %}
+  <div
+    class="post-preview searchable-post"
+    style="margin-bottom: 15px"
+    data-title="{{ post.title | downcase }}"
+    data-subtitle="{{ post.subtitle | downcase }}"
+    data-date="{{ post.date | date: '%Y.%m.%d' }}"
+  >
+    <a href="{{ post.url | prepend: site.baseurl }}">
+      <h4
+        class="post-title"
+        style="margin-top: 0; margin-bottom: 5px; font-size: 18px"
+      >
+        {{ post.title }}
+      </h4>
+      {% if post.subtitle %}
+      <p
+        class="post-subtitle"
+        style="font-size: 14px; color: #999; margin: 0 0 5px 0"
+      >
+        {{ post.subtitle }}
+      </p>
+      {% endif %}
+    </a>
+    <p class="post-meta" style="margin: 0; font-size: 13px; color: #777">
+      {{ post.date | date: "%Y.%m.%d" }}
+    </p>
+  </div>
+  <hr class="post-divider" style="border-top: 1px solid #ddd; margin: 15px 0" />
+  {% endfor %}
+</div>
+
+<!-- No Results Message -->
+<div id="no-results" class="no-results-message" style="display: none">
+  🔍 검색 결과가 없습니다.
+</div>
+
+<script>
+  $(document).ready(function () {
+    var $searchInput = $("#post-search-input");
+    var $posts = $(".searchable-post");
+    var $dividers = $(".post-divider");
+    var $postCount = $("#post-count");
+    var $noResults = $("#no-results");
+    var totalPosts = $posts.length;
+
+    // 한글 초성 추출 함수
+    function getChosung(text) {
+      var chosung = [
+        "ㄱ",
+        "ㄲ",
+        "ㄴ",
+        "ㄴ",
+        "ㄷ",
+        "ㄸ",
+        "ㄹ",
+        "ㅁ",
+        "ㅂ",
+        "ㅃ",
+        "ㅅ",
+        "ㅆ",
+        "ㅇ",
+        "ㅈ",
+        "ㅉ",
+        "ㅊ",
+        "ㅋ",
+        "ㅌ",
+        "ㅍ",
+        "ㅎ",
+      ];
+      var result = "";
+      for (var i = 0; i < text.length; i++) {
+        var code = text.charCodeAt(i) - 44032;
+        if (code > -1 && code < 11172) {
+          result += chosung[Math.floor(code / 588)];
+        } else {
+          result += text.charAt(i);
+        }
+      }
+      return result;
+    }
+
+    // 검색 매칭 함수
+    function matchesSearch(text, searchTerm) {
+      if (!text) return false;
+      text = String(text).toLowerCase();
+      searchTerm = searchTerm.toLowerCase();
+
+      // 1. 직접 포함 검색
+      if (text.indexOf(searchTerm) !== -1) return true;
+
+      // 2. 초성 검색
+      var textChosung = getChosung(text);
+      if (textChosung.indexOf(searchTerm) !== -1) return true;
+
+      // 3. 유사 문자 검색 (편집 거리 1 이하)
+      if (searchTerm.length >= 2) {
+        for (var i = 0; i <= text.length - searchTerm.length; i++) {
+          var substring = text.substr(i, searchTerm.length);
+          var diff = 0;
+          for (var j = 0; j < searchTerm.length; j++) {
+            if (substring[j] !== searchTerm[j]) diff++;
+            if (diff > 1) break;
+          }
+          if (diff <= 1) return true;
+        }
+      }
+
+      return false;
+    }
+
+    function updatePostCount(visibleCount) {
+      if ($searchInput.val().trim() === "") {
+        $postCount.text("총 " + totalPosts + "개의 글");
+        $noResults.hide();
+      } else {
+        $postCount.text(
+          visibleCount + "개의 검색 결과 (전체 " + totalPosts + "개)"
+        );
+        if (visibleCount === 0) {
+          $noResults.show();
+        } else {
+          $noResults.hide();
+        }
+      }
+    }
+
+    // 초기 카운트 표시
+    updatePostCount(totalPosts);
+
+    $searchInput.on("input", function () {
+      var searchTerm = $(this).val().trim();
+      var visibleCount = 0;
+
+      if (searchTerm === "") {
+        $posts.show();
+        $dividers.show();
+        visibleCount = totalPosts;
+      } else {
+        $posts.each(function (index) {
+          var $post = $(this);
+          var $divider = $dividers.eq(index);
+          var title = $post.data("title") || "";
+          var subtitle = $post.data("subtitle") || "";
+          var date = $post.data("date") || "";
+
+          // 제목, 부제목, 날짜 중 하나라도 매칭되면 표시
+          if (
+            matchesSearch(title, searchTerm) ||
+            matchesSearch(subtitle, searchTerm) ||
+            matchesSearch(date, searchTerm)
+          ) {
+            $post.show();
+            $divider.show();
+            visibleCount++;
+          } else {
+            $post.hide();
+            $divider.hide();
+          }
+        });
+      }
+
+      updatePostCount(visibleCount);
+    });
+  });
+</script>

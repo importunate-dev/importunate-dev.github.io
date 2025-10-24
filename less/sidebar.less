@@ -19,9 +19,11 @@
 .sidebar-container {
   color: @gray-light;
   font-size: 14px;
+  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", sans-serif;
   h5 {
     color: @brand-gray;
     padding-bottom: 1em;
+    font-weight: 500;
     a {
       color: @brand-gray !important;
       text-decoration: none;
@@ -56,6 +58,30 @@
     }
     .list-inline > li {
       padding-left: 0px;
+    }
+  }
+  
+  // Sub-categories list styling
+  .sub-categories-list {
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 30px;
+    
+    li {
+      margin-bottom: 12px;
+      
+      a {
+        font-size: 16px !important;
+        font-weight: 500;
+        color: #333 !important;
+        transition: all 0.2s ease;
+        display: inline-block;
+        
+        &:hover {
+          color: @brand-primary !important;
+          transform: translateX(5px);
+        }
+      }
     }
   }
 }

@@ -12,10 +12,12 @@
 .sidebar-container {
   color: #bfbfbf;
   font-size: 14px;
+  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", sans-serif;
 }
 .sidebar-container h5 {
   color: #a3a3a3;
   padding-bottom: 1em;
+  font-weight: 500;
 }
 .sidebar-container h5 a {
   color: #a3a3a3 !important;
@@ -47,6 +49,25 @@
 }
 .sidebar-container .short-about .list-inline > li {
   padding-left: 0px;
+}
+.sidebar-container .sub-categories-list {
+  list-style-type: none;
+  padding-left: 0;
+  margin-bottom: 30px;
+}
+.sidebar-container .sub-categories-list li {
+  margin-bottom: 12px;
+}
+.sidebar-container .sub-categories-list li a {
+  font-size: 16px !important;
+  font-weight: 500;
+  color: #333 !important;
+  transition: all 0.2s ease;
+  display: inline-block;
+}
+.sidebar-container .sub-categories-list li a:hover {
+  color: #0085a1 !important;
+  transform: translateX(5px);
 }
 .catalog-container {
   padding: 0px;
@@ -650,6 +671,32 @@ pre.highlight {
 .search-icon,
 .search-icon-close {
   font-size: 16px;
+}
+#post-search-input {
+  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+  transition: all 0.3s ease;
+}
+#post-search-input:focus {
+  outline: none;
+  border-color: #337ab7;
+  box-shadow: 0 0 0 3px rgba(51, 122, 183, 0.1);
+}
+#post-search-input::placeholder {
+  color: #999;
+}
+#post-count {
+  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 500;
+}
+.searchable-post {
+  transition: opacity 0.2s ease;
+}
+.no-results-message {
+  text-align: center;
+  padding: 40px 20px;
+  color: #999;
+  font-size: 16px;
+  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 body {
   /* Hux learn from
