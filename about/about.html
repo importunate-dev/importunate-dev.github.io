@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "About"
+title: "소개"
 description: ""
 header-img: "https://cdn.jsdelivr.net/gh/junsoopooh/junsoopooh.github.io/img/introheader.webp"
 header-mask: 0.3
@@ -10,26 +10,3 @@ header-mask: 0.3
   {% capture about_kr %}{% include about/kr.md %}{% endcapture %} {{ about_kr |
   markdownify }}
 </div>
-
-{% if site.disqus_username %}
-
-<div id="disqus_thread"></div>
-<script>
-  (function () {
-    var d = document,
-      s = d.createElement("script");
-
-    s.src = "https://junsoopooh-github-io.disqus.com/embed.js";
-
-    s.setAttribute("data-timestamp", +new Date());
-    (d.head || d.body).appendChild(s);
-  })();
-</script>
-<noscript
-  >Please enable JavaScript to view the
-  <a href="https://disqus.com/?ref_noscript" rel="nofollow"
-    >comments powered by Disqus.</a
-  ></noscript
->
-
-{% endif %}
