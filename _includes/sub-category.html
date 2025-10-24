@@ -4,14 +4,22 @@
 <hr class="hidden-sm hidden-xs" />
 {% endif %}
 <ul class="sub-categories-list">
-  {% if page.subcategory and page.subcategory.size > 0 %} {% for subdir in
-  page.subcategory %}
+  {% if page.subcategory and page.subcategory.size > 0 %} {% comment %} Extract
+  category from page {% endcomment %} {% assign parts = page.path | split: "/"
+  %} {% assign current_category = parts[0] %} {% for subdir in page.subcategory
+  %} {% comment %} Count posts in this subcategory {% endcomment %} {% assign
+  count = 0 %} {% for post in site.posts %} {% if post.category ==
+  current_category and post.subcategory == subdir %} {% assign count = count |
+  plus: 1 %} {% endif %} {% endfor %}
   <li>
     <a
       href="{{ site.baseurl }}/{{ page.path | remove: 'index.html' }}{{ subdir }}"
       title="{{ subdir }}"
       rel="{{ subdir }}"
-      >{{ subdir }}</a
+      >{{ subdir }}<span
+        style="font-size: 0.85em; color: #999; margin-left: 4px"
+        >({{ count }})</span
+      ></a
     >
   </li>
   {% endfor %} {% else %}

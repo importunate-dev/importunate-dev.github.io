@@ -46,10 +46,17 @@ header-img: "https://cdn.jsdelivr.net/gh/junsoopooh/junsoopooh.github.io/img/int
         post.subcategory and post.subcategory != "" %} {% unless
         listed_subcategories contains post.subcategory %} {% assign
         listed_subcategories = listed_subcategories | push: post.subcategory %}
+        {% comment %} Count posts in this subcategory {% endcomment %} {% assign
+        count = 0 %} {% for p in site.posts %} {% if p.category ==
+        current_category and p.subcategory == post.subcategory %} {% assign
+        count = count | plus: 1 %} {% endif %} {% endfor %}
         <li>
           <a
             href="{{ site.baseurl }}/{{ current_category }}/{{ post.subcategory }}"
-            >{{ post.subcategory }}</a
+            >{{ post.subcategory }}<span
+              style="font-size: 0.85em; color: #999; margin-left: 4px"
+              >({{ count }})</span
+            ></a
           >
         </li>
         {% endunless %} {% endif %} {% endif %} {% endfor %}

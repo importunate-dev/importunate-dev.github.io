@@ -1211,6 +1211,14 @@ samp {
     padding: 55px 0;
   }
 }
+.intro-header .page-heading {
+  padding: 70px 0 60px;
+}
+@media only screen and (min-width: 768px) {
+  .intro-header .page-heading {
+    padding: 55px 0;
+  }
+}
 .intro-header .site-heading,
 .intro-header .page-heading {
   text-align: center;
@@ -1238,6 +1246,14 @@ samp {
   .intro-header .site-heading h1,
   .intro-header .page-heading h1 {
     font-size: 80px;
+  }
+}
+.intro-header .post-heading {
+  padding: 70px 0 60px;
+}
+@media only screen and (min-width: 768px) {
+  .intro-header .post-heading {
+    padding: 55px 0;
   }
 }
 .intro-header .post-heading h1 {
