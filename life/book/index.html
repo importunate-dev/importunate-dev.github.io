@@ -1,38 +1,10 @@
 ---
-layout: subpage
+layout: subcategory-list
+category: life
+subcategory: book
 title: "Book"
 description: " 독후감 "
 header-img: "https://cdn.jsdelivr.net/gh/junsoopooh/junsoopooh.github.io/img/introheader.webp"
 header-mask: 0.3
 hide-in-nav: true
 ---
-
-<h1>BOOK</h1>
-
-<ul>
-  {% for post in site.posts %} {% if post.category == 'life' and
-  post.subcategory == 'book' %}
-  <div class="post-preview" style="margin-bottom: 15px">
-    <a href="{{ post.url | prepend: site.baseurl }}">
-      <h4
-        class="post-title"
-        style="margin-top: 0; margin-bottom: 5px; font-size: 18px"
-      >
-        {{ post.title }}
-      </h4>
-      {% if post.subtitle %}
-      <p
-        class="post-subtitle"
-        style="font-size: 14px; color: #999; margin: 0 0 5px 0"
-      >
-        {{ post.subtitle }}
-      </p>
-      {% endif %}
-    </a>
-    <p class="post-meta" style="margin: 0; font-size: 13px; color: #777">
-      {{ post.date | date: "%Y.%m.%d" }}
-    </p>
-  </div>
-  <hr style="border-top: 1px solid #ddd; margin: 15px 0" />
-  {% endif %} {% endfor %}
-</ul>
