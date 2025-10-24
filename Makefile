@@ -1,4 +1,4 @@
-.PHONY: help install serve start stop restart status clean logs
+.PHONY: help install serve start stop restart status clean logs build watch dev
 
 help:
 	@echo "Jekyll 블로그 관리 명령어:"
@@ -10,10 +10,17 @@ help:
 	@echo "  make status   - Jekyll 서버 상태 확인"
 	@echo "  make logs     - 서버 로그 확인"
 	@echo "  make clean    - 생성된 사이트 및 로그 삭제"
+	@echo ""
+	@echo "LESS 컴파일 명령어:"
+	@echo "  make build    - LESS를 CSS로 컴파일 (배포 전 실행)"
+	@echo "  make watch    - LESS 파일 변경 감시 및 자동 컴파일"
+	@echo "  make dev      - Jekyll + LESS 자동 컴파일 동시 실행"
 
 install:
 	@echo "📦 의존성 패키지 설치 중..."
 	bundle install --path vendor/bundle
+	@echo "📦 Node.js 패키지 설치 중..."
+	npm install
 
 serve:
 	@echo "🚀 Jekyll 서버 시작 중... (http://localhost:4000)"
@@ -53,4 +60,34 @@ clean:
 	@echo "🧹 생성된 파일들을 삭제합니다..."
 	@rm -rf _site .jekyll-cache .jekyll-metadata jekyll.log
 	@echo "✅ 삭제 완료!"
+
+build:
+	@echo "🔨 LESS를 CSS로 컴파일 중..."
+	@if [ ! -d "node_modules" ]; then \
+		echo "⚠️  node_modules가 없습니다. npm install을 실행합니다..."; \
+		npm install; \
+	fi
+	@npx grunt less
+	@echo "✅ CSS 컴파일 완료!"
+	@echo "📝 생성된 파일: css/hux-blog.css, css/hux-blog.min.css"
+
+watch:
+	@echo "👀 LESS 파일 변경 감시 중... (Ctrl+C로 종료)"
+	@if [ ! -d "node_modules" ]; then \
+		echo "⚠️  node_modules가 없습니다. npm install을 실행합니다..."; \
+		npm install; \
+	fi
+	@npx grunt watch
+
+dev:
+	@echo "🚀 개발 환경 시작 중..."
+	@if [ ! -d "node_modules" ]; then \
+		echo "⚠️  node_modules가 없습니다. npm install을 실행합니다..."; \
+		npm install; \
+	fi
+	@echo "✨ Jekyll 서버 + LESS 자동 컴파일 실행"
+	@echo "📍 http://localhost:4000"
+	@echo "👀 LESS 파일이 자동으로 감시됩니다"
+	@echo "⚠️  종료: Ctrl+C"
+	@npx grunt watch & bundle exec jekyll serve
 

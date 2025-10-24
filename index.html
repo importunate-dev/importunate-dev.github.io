@@ -4,33 +4,37 @@ description: "백엔드 개발자 블로그입니다."
 header-img: "https://cdn.jsdelivr.net/gh/junsoopooh/junsoopooh.github.io/img/introheader.webp"
 header-mask: 0.3
 ---
+
 <h3>최근 게시물</h3>
 
 {% for post in site.posts limit:5 %}
-        <div class="post-preview">
-            <!-- Category and Subcategory -->
-            <h4 class="post-category">
-                <em>{{ post.subcategory }} in {{ post.category }}</em>
-            </h4>
+<div class="post-preview" style="margin-bottom: 15px">
+  <!-- Category and Subcategory -->
+  <p
+    class="post-category"
+    style="font-size: 13px; color: #777; margin-bottom: 5px"
+  >
+    <em>{{ post.subcategory }} in {{ post.category }}</em>
+  </p>
 
-            <!-- Title -->
-            <h2 class="post-title">
-                <a href="{{ post.url | prepend: site.baseurl }}">
-                    {{ post.title }}
-                </a>
-            </h2>
+  <!-- Title -->
+  <h4 class="post-title" style="margin-top: 0; margin-bottom: 8px">
+    <a href="{{ post.url | prepend: site.baseurl }}"> {{ post.title }} </a>
+  </h4>
 
-            <!-- Subtitle and Date -->
-            <div style="display: flex; justify-content: space-between;">
-                {% if post.subtitle %}
-                <h3 class="post-subtitle">
-                </h5>
-                {% endif %}
-                <p class="post-meta">
-                    {{ post.date | date: "%Y.%m.%d" }}
-                </p>
-            </div>
-        </div>
-        <hr style="border-top: 1px solid black;">
+  <!-- Subtitle and Date -->
+  <div
+    style="display: flex; justify-content: space-between; align-items: center"
+  >
+    {% if post.subtitle %}
+    <p class="post-subtitle" style="font-size: 14px; color: #999; margin: 0">
+      {{ post.subtitle }}
+    </p>
+    {% endif %}
+    <p class="post-meta" style="margin: 0; font-size: 13px">
+      {{ post.date | date: "%Y.%m.%d" }}
+    </p>
+  </div>
+</div>
+<hr style="border-top: 1px solid #ddd; margin: 15px 0" />
 {% endfor %}
-
