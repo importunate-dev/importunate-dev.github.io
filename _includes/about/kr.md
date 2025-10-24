@@ -1,7 +1,7 @@
 # 배준수
 
 <div class="about">
-<a href="https://junsoopooh.github.io/" target="_blank"><img src="https://img.shields.io/badge/Blog-181717?style=flat-square&logo=gitbook&logoColor=white"/></a><a href="mailto:importuntae.dev@gmail.com" target="_blank"><img src="https://img.shields.io/badge/Email-EA4335?style=flat-square&logo=gmail&logoColor=white"/></a><a href="https://www.linkedin.com/in/junsu-594122277/" target="_blank"><img src="https://img.shields.io/badge/Linkedin-0A66C2?style=flat-square&logo=linkedin&logoColor=white"/></a>
+<a href="https://importunate-dev.github.io/" target="_blank"><img src="https://img.shields.io/badge/Blog-181717?style=flat-square&logo=gitbook&logoColor=white"/></a><a href="mailto:importuntae.dev@gmail.com" target="_blank"><img src="https://img.shields.io/badge/Email-EA4335?style=flat-square&logo=gmail&logoColor=white"/></a><a href="https://www.linkedin.com/in/junsu-594122277/" target="_blank"><img src="https://img.shields.io/badge/Linkedin-0A66C2?style=flat-square&logo=linkedin&logoColor=white"/></a>
 </div>
 
 # History
