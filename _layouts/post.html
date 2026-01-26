@@ -5,6 +5,7 @@ header-img: "https://cdn.jsdelivr.net/gh/importunate-dev/importunate-dev.github.
 
 <!-- Post Header -->
 {% include intro-header.html type='post' %}
+{% include schema.html %}
 
 <!-- Post Content -->
 <article>
@@ -49,6 +50,9 @@ header-img: "https://cdn.jsdelivr.net/gh/importunate-dev/importunate-dev.github.
           {% endif %} {% endif %}
         </ul>
         <hr style="visibility: hidden" />
+
+        <!-- Related Posts -->
+        {% include related-posts.html %}
 
         {% if site.disqus_username %}
         <!-- disqus 评论框 start -->

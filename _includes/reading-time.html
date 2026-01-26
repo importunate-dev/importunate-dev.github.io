@@ -1,0 +1,16 @@
+{% comment %}
+  읽기 시간 계산 및 표시
+  평균 읽기 속도: 분당 200-250단어 (한국어 기준 200단어 사용)
+{% endcomment %}
+
+{% if page.layout == 'post' %}
+  {% assign words = page.content | strip_html | number_of_words %}
+  {% if words < 200 %}
+    {% assign reading_time = 1 %}
+  {% else %}
+    {% assign reading_time = words | divided_by: 200 | plus: 1 %}
+  {% endif %}
+  <span class="reading-time" style="font-size: 13px; color: #999; margin-left: 10px;">
+    <i class="fa fa-clock-o" aria-hidden="true"></i> 약 {{ reading_time }}분 읽기
+  </span>
+{% endif %}

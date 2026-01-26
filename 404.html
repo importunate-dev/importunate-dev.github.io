@@ -2,7 +2,7 @@
 layout: default
 title: 404
 hide-in-nav: true
-description: "연결 실패 :("
+description: "페이지를 찾을 수 없습니다"
 header-img: "https://cdn.jsdelivr.net/gh/importunate-dev/importunate-dev.github.io/img/introheader.webp"
 permalink: /404.html
 ---
@@ -10,6 +10,100 @@ permalink: /404.html
 <!-- Page Header -->
 {% include intro-header.html type="page" short='true' %}
 
+<!-- 404 Content -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <div style="text-align: center; padding: 60px 20px;">
+        <h1 style="font-size: 120px; margin: 0; color: #0085a1;">404</h1>
+        <h2 style="margin-top: 20px; margin-bottom: 30px;">페이지를 찾을 수 없습니다</h2>
+        <p style="font-size: 18px; color: #777; margin-bottom: 40px;">
+          요청하신 페이지가 존재하지 않거나 이동되었을 수 있습니다.
+        </p>
+        
+        <!-- Search Box -->
+        <div style="max-width: 500px; margin: 0 auto 40px;">
+          <input
+            type="text"
+            id="search-input-404"
+            placeholder="검색어를 입력하세요..."
+            style="
+              width: 100%;
+              padding: 12px 20px;
+              border: 2px solid #0085a1;
+              border-radius: 25px;
+              font-size: 16px;
+              font-family: 'Noto Sans KR', sans-serif;
+              outline: none;
+            "
+          />
+          <div id="search-results-404" style="margin-top: 20px;"></div>
+        </div>
+
+        <!-- Popular Posts -->
+        <div style="margin-top: 50px;">
+          <h3 style="margin-bottom: 30px; color: #333;">인기 게시물</h3>
+          <div style="text-align: left; max-width: 600px; margin: 0 auto;">
+            {% assign recent_posts = site.posts | limit: 5 %}
+            {% for post in recent_posts %}
+            <div style="margin-bottom: 20px; padding: 15px; background: #f9f9f9; border-radius: 8px;">
+              <h4 style="margin: 0 0 10px 0; font-size: 18px;">
+                <a href="{{ post.url | prepend: site.baseurl }}" style="color: #0085a1; text-decoration: none;">
+                  {{ post.title }}
+                </a>
+              </h4>
+              {% if post.subtitle %}
+              <p style="margin: 0 0 5px 0; color: #777; font-size: 14px;">{{ post.subtitle }}</p>
+              {% endif %}
+              <p style="margin: 0; color: #999; font-size: 12px;">{{ post.date | date: "%Y.%m.%d" }}</p>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <!-- Home Button -->
+        <div style="margin-top: 40px;">
+          <a 
+            href="{{ site.baseurl }}/" 
+            style="
+              display: inline-block;
+              padding: 12px 30px;
+              background: #0085a1;
+              color: white;
+              text-decoration: none;
+              border-radius: 25px;
+              font-size: 16px;
+              transition: background 0.3s;
+            "
+            onmouseover="this.style.background='#006d85'"
+            onmouseout="this.style.background='#0085a1'"
+          >
+            홈으로 돌아가기
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
   document.body.classList.add("page-fullscreen");
+  
+  // Search functionality
+  $(document).ready(function() {
+    var $searchInput = $('#search-input-404');
+    var $searchResults = $('#search-results-404');
+    
+    if (typeof SimpleJekyllSearch !== 'undefined') {
+      SimpleJekyllSearch({
+        searchInput: $searchInput[0],
+        resultsContainer: $searchResults[0],
+        json: '/search.json',
+        searchResultTemplate: '<div style="padding: 10px; margin: 5px 0; background: white; border: 1px solid #ddd; border-radius: 4px;"><a href="{url}" style="color: #0085a1; text-decoration: none;"><strong>{title}</strong></a><br><small style="color: #777;">{subtitle}</small></div>',
+        noResultsText: '<p style="color: #777; text-align: center;">검색 결과가 없습니다.</p>',
+        limit: 5,
+        fuzzy: false
+      });
+    }
+  });
 </script>

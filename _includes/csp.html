@@ -1,0 +1,45 @@
+{% comment %}
+  Content Security Policy (CSP)
+  GitHub Pages는 HTTP 헤더를 직접 제어할 수 없으므로 meta 태그로 구현
+  인라인 스크립트를 최소화하고 필요한 경우 nonce 사용 고려
+{% endcomment %}
+
+<meta http-equiv="Content-Security-Policy" content="
+  default-src 'self';
+  script-src 'self' 'unsafe-inline' 'unsafe-eval' 
+    https://www.googletagmanager.com 
+    https://www.google-analytics.com 
+    https://pagead2.googlesyndication.com 
+    https://cdnjs.cloudflare.com 
+    https://cdn.jsdelivr.net 
+    https://img1.cache.netease.com
+    https://importunate-dev-github-io.disqus.com
+    //cdnjs.cloudflare.com;
+  style-src 'self' 'unsafe-inline' 
+    https://fonts.googleapis.com 
+    https://cdnjs.cloudflare.com 
+    //cdnjs.cloudflare.com;
+  font-src 'self' 
+    https://fonts.gstatic.com 
+    https://cdnjs.cloudflare.com 
+    data:;
+  img-src 'self' 
+    https://cdn.jsdelivr.net 
+    https://www.google-analytics.com 
+    https://www.googletagmanager.com 
+    data: 
+    https:;
+  connect-src 'self' 
+    https://www.google-analytics.com 
+    https://www.googletagmanager.com 
+    https://pagead2.googlesyndication.com
+    https://importunate-dev-github-io.disqus.com
+    https://disqus.com;
+  frame-src 
+    https://www.google.com 
+    https://pagead2.googlesyndication.com
+    https://disqus.com;
+  object-src 'none';
+  base-uri 'self';
+  form-action 'self';
+">

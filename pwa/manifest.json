@@ -1,7 +1,7 @@
 {
-  "name": "Hux Blog",
-  "short_name": "Hux Blog",
-  "description": "About an engineer & designer who loves web.",
+  "name": "Importunate Blog",
+  "short_name": "Importunate",
+  "description": "It's late, but it's better than turning a blind eye. 3년차 백엔드 개발자 블로그입니다.",
   "icons": [
     {
       "src": "icons/128.png",
@@ -9,14 +9,26 @@
       "type": "image/png"
     },
     {
+      "src": "icons/192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
       "src": "icons/512.png",
       "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/384.png",
+      "sizes": "384x384",
       "type": "image/png"
     }
   ],
   "background_color": "#fff",
-  "theme_color": "#000",
+  "theme_color": "#000000",
   "start_url": "/",
   "display": "standalone",
-  "orientation": "portrait"
+  "orientation": "portrait",
+  "scope": "/",
+  "lang": "ko"
 }

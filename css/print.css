@@ -1,0 +1,115 @@
+/**
+ * 인쇄 스타일
+ * 인쇄 시 불필요한 요소를 숨기고 최적화된 레이아웃 제공
+ */
+
+@media print {
+  /* 기본 설정 */
+  * {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  /* 네비게이션 숨기기 */
+  nav,
+  .navbar,
+  .navbar-default,
+  .navbar-custom {
+    display: none !important;
+  }
+
+  /* 사이드바 숨기기 */
+  .sidebar-container,
+  .catalog-container,
+  .side-catalog {
+    display: none !important;
+  }
+
+  /* 검색 기능 숨기기 */
+  .search-page,
+  .search-icon,
+  #search-input {
+    display: none !important;
+  }
+
+  /* 댓글 숨기기 */
+  .comment,
+  #disqus_thread,
+  #cloud-tie-wrapper {
+    display: none !important;
+  }
+
+  /* 푸터 숨기기 */
+  footer {
+    display: none !important;
+  }
+
+  /* 소셜 링크 숨기기 */
+  .sns-links {
+    display: none !important;
+  }
+
+  /* 페이지 헤더 최적화 */
+  .intro-header {
+    page-break-after: avoid;
+    margin-bottom: 20px;
+  }
+
+  /* 포스트 컨테이너 */
+  .post-container {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+
+  /* 링크 스타일 */
+  a {
+    text-decoration: underline;
+  }
+
+  a[href^="http"]:after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #666;
+  }
+
+  a[href^="#"]:after,
+  a[href^="/"]:after {
+    content: "";
+  }
+
+  /* 이미지 최적화 */
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+    page-break-inside: avoid;
+  }
+
+  /* 코드 블록 */
+  pre,
+  code {
+    page-break-inside: avoid;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  /* 페이지 나누기 */
+  h1,
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+
+  /* 인쇄 시 URL 표시 */
+  .post-title a:after {
+    content: "";
+  }
+
+  /* 불필요한 버튼 숨기기 */
+  button,
+  .btn,
+  .pager {
+    display: none !important;
+  }
+}
