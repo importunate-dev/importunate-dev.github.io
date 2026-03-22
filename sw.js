@@ -31,9 +31,8 @@ const PRECACHE_LIST = [
 ];
 const HOSTNAME_WHITELIST = [
   self.location.hostname,
-  "huangxuan.me",
-  "yanshuo.io",
   "cdnjs.cloudflare.com",
+  "cdn.jsdelivr.net",
 ];
 const DEPRECATED_CACHES = [
   "precache-v1",

@@ -13,9 +13,15 @@
     name="viewport"
     content="width=device-width, initial-scale=1, viewport-fit=cover"
   />
-  <meta name="description" content="{{ site.description }}" />
+  <meta name="description" content="{% if page.layout == 'post' %}{{ page.excerpt | strip_html | truncate:200 }}{% elsif page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}" />
   <meta name="keywords" content="{{ site.keyword }}" />
   <meta name="theme-color" content="{{ site.chrome-tab-theme-color }}" />
+
+  <!-- Skip-link & Accessibility Styles -->
+  <style>
+    .skip-link { position: absolute; top: -40px; left: 0; background: #000; color: #fff; padding: 8px 16px; z-index: 10000; transition: top 0.2s; }
+    .skip-link:focus { top: 0; }
+  </style>
 
   <!-- Content Security Policy -->
   {% include csp.html %}
@@ -43,9 +49,15 @@
     content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}"
   />
   {% endcase %}
-  <meta property="og:image" content="{{ site.url }}{{ site.sidebar-avatar }}" />
+  <meta property="og:image" content="{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.sidebar-avatar }}{% endif %}" />
   <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
   <meta property="og:site_name" content="{{ site.SEOTitle }}" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.SEOTitle }}{% endif %}" />
+  <meta name="twitter:description" content="{% if page.layout == 'post' %}{{ page.excerpt | strip_html | truncate:200 }}{% elsif page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}" />
+  <meta name="twitter:image" content="{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.sidebar-avatar }}{% endif %}" />
 
   <title>
     {% if page.title %}{{ page.title }} - {{ site.SEOTitle }}{% else %}{{
@@ -76,6 +88,11 @@
   <!-- Print CSS -->
   <link rel="stylesheet" href="{{ "/css/print.css" | prepend: site.baseurl }}" media="print">
 
+  <!-- Resource Hints -->
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+
   <!-- Custom Fonts -->
   <!-- Google Fonts for Korean -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -93,12 +110,14 @@
     />
   </noscript>
 
-  <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
-  <!-- Hux change font-awesome CDN to qiniu -->
+  <!-- Font Awesome -->
+  <!-- TODO: SRI 해시 추가 권장 (integrity="sha384-..." crossorigin="anonymous") -->
+  <!-- 생성 방법: curl -sL URL | openssl dgst -sha384 -binary | openssl base64 -A -->
   <link
     href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css"
     rel="stylesheet"
     type="text/css"
+    crossorigin="anonymous"
   />
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -110,9 +129,6 @@
 
   <!-- ga & ba script hoook -->
   <script></script>
-
-  <!-- jQuery (load early for inline scripts) -->
-  <script src="{{ "/js/jquery.min.js" | prepend: site.baseurl }}"></script>
 
   <!-- Google AdSense -->
   <script

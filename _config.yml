@@ -1,6 +1,6 @@
 # Site settings
 title: Importunate
-SEOTitle: Importunate
+SEOTitle: Importunate | 백엔드 개발 블로그
 header-img: "https://cdn.jsdelivr.net/gh/importunate-dev/importunate-dev.github.io/img/introheader.webp"
 email: importuntae.dev@gmail.com
 description: It's late, but it's better than turning a blind eye.
@@ -27,12 +27,25 @@ exclude:
     "node_modules",
     "Gruntfile.js",
     "package.json",
+    "package-lock.json",
     "README.md",
     "README.zh.md",
     "vendor",
     "Gemfile",
     "Gemfile.lock",
+    "Makefile",
+    "Rakefile",
+    "BLOG_IMPROVEMENTS.md",
+    "IMPROVEMENT_PLAN.md",
+    "IMAGE_ALT_GUIDE.md",
   ]
+
+# Sitemap: exclude low-value pages from sitemap
+defaults:
+  - scope:
+      path: "google4cb727437fad26da.html"
+    values:
+      sitemap: false
 anchorjs: true # if you want to customize anchor. check out line:181 of `post.html`
 # If you have timezone issue (e.g. #68) in China, uncomment to use this:
 #timezone: CN

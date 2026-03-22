@@ -4,8 +4,12 @@
 
   <!-- hack iOS CSS :active style -->
   <body ontouchstart="">
-    {% include nav.html %} {% include search.html %} {{ content }} {% include
-    footer.html %}
+    <a href="#main-content" class="skip-link sr-only sr-only-focusable">본문으로 건너뛰기</a>
+    {% include nav.html %} {% include search.html %}
+    <main id="main-content" role="main">
+      {{ content }}
+    </main>
+    {% include footer.html %}
 
     <!-- Image to hack wechat -->
     <img
