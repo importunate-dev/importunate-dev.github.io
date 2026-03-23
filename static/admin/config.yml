@@ -1,0 +1,54 @@
+backend:
+  name: github
+  repo: importunate-dev/importunate-dev.github.io
+  branch: main
+  base_url: https://importunate-dev.github.io
+
+# Media files — 이미지를 별도 저장소에 저장하려면 아래를 활성화
+# media_library:
+#   name: uploadcare
+#   config:
+#     publicKey: YOUR_KEY
+media_folder: "static/images"
+public_folder: "/images"
+
+locale: "ko"
+
+slug:
+  encoding: "ascii"
+  clean_accents: true
+
+collections:
+  - name: "posts"
+    label: "게시글"
+    folder: "content/posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    extension: "md"
+    format: "yaml-frontmatter"
+    editor:
+      preview: true
+    sortable_fields: ["date", "title"]
+    fields:
+      - { label: "제목", name: "title", widget: "string" }
+      - { label: "날짜", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
+      - { label: "설명", name: "description", widget: "string", required: false }
+      - { label: "초안", name: "draft", widget: "boolean", default: false, required: false }
+      - label: "카테고리"
+        name: "categories"
+        widget: "list"
+        allow_add: true
+        field: { label: "카테고리", name: "category", widget: "string" }
+      - label: "태그"
+        name: "tags"
+        widget: "list"
+        allow_add: true
+        field: { label: "태그", name: "tag", widget: "string" }
+      - label: "시리즈"
+        name: "series"
+        widget: "list"
+        required: false
+        allow_add: true
+        field: { label: "시리즈", name: "series", widget: "string" }
+      - { label: "목차 표시", name: "ShowToc", widget: "boolean", default: true, required: false }
+      - { label: "본문", name: "body", widget: "markdown" }

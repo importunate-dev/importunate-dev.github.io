@@ -1,0 +1,161 @@
+baseURL = "https://importunate-dev.github.io/"
+languageCode = "ko"
+defaultContentLanguage = "ko"
+title = "Importunate"
+theme = "PaperMod"
+[pagination]
+  pagerSize = 10
+
+# Build
+enableRobotsTXT = true
+buildDrafts = false
+buildFuture = true
+buildExpired = false
+enableEmoji = false
+
+# SEO
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5
+
+[minify]
+  disableXML = true
+  minifyOutput = true
+
+[params]
+  env = "production"
+  title = "Importunate"
+  description = "It's late, but it's better than turning a blind eye."
+  keywords = ["programmer", "backend", "developer", "blog"]
+  author = "배준수"
+
+  defaultTheme = "auto"
+  disableThemeToggle = false
+  ShowReadingTime = true
+  ShowShareButtons = true
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowWordCount = false
+  ShowRssButtonInSectionTermList = true
+  UseHugoToc = true
+  disableSpecial1stPost = false
+  disableScrollToTop = false
+  hidemeta = false
+  hideSummary = false
+  showtoc = true
+  tocopen = false
+
+  [params.homeInfoParams]
+    Title = "Importunate"
+    Content = "샐러드랩 3년차 백엔드 개발자"
+
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/importunate-dev"
+
+  [[params.socialIcons]]
+    name = "linkedin"
+    url = "https://www.linkedin.com/in/junsu-594122277"
+
+  [[params.socialIcons]]
+    name = "rss"
+    url = "index.xml"
+
+  [[params.socialIcons]]
+    name = "email"
+    url = "mailto:importuntae.dev@gmail.com"
+
+  [params.cover]
+    hidden = false
+    hiddenInList = false
+    hiddenInSingle = false
+
+  [params.editPost]
+    URL = "https://github.com/importunate-dev/importunate-dev.github.io/tree/main/content"
+    Text = "수정 제안"
+    appendFilePath = true
+
+  [params.fuseOpts]
+    isCaseSensitive = false
+    shouldSort = true
+    location = 0
+    distance = 1000
+    threshold = 0.4
+    minMatchCharLength = 0
+    keys = ["title", "permalink", "summary", "content"]
+
+# Analytics
+[services]
+  [services.googleAnalytics]
+    id = "G-QZMSC32TSX"
+
+# Menu
+[[menu.main]]
+  identifier = "home"
+  name = "홈"
+  url = "/"
+  weight = 10
+
+[[menu.main]]
+  identifier = "cat-study"
+  name = "공부"
+  url = "/categories/study/"
+  weight = 20
+
+[[menu.main]]
+  identifier = "cat-log"
+  name = "로그"
+  url = "/categories/log/"
+  weight = 30
+
+[[menu.main]]
+  identifier = "cat-project"
+  name = "프로젝트"
+  url = "/categories/project/"
+  weight = 40
+
+[[menu.main]]
+  identifier = "cat-life"
+  name = "일상"
+  url = "/categories/life/"
+  weight = 50
+
+[[menu.main]]
+  identifier = "nav-search"
+  name = "검색"
+  url = "/search/"
+  weight = 60
+
+[[menu.main]]
+  identifier = "nav-about"
+  name = "소개"
+  url = "/about/"
+  weight = 70
+
+[[menu.main]]
+  identifier = "nav-archive"
+  name = "아카이브"
+  url = "/archives/"
+  weight = 80
+
+# Taxonomies
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+  series = "series"
+
+# Outputs
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+# Markup
+[markup]
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = true
+    lineNos = true
+    style = "monokai"
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
