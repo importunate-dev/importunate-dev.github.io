@@ -86,6 +86,9 @@ enableEmoji = false
     minMatchCharLength = 0
     keys = ["title", "permalink", "summary", "content"]
 
+  [params.analytics.naver]
+    SiteVerificationTag = "4a2034ee708e9eb4dea2033d4e1ae11d33f87b64"
+
 # Analytics
 [services]
   [services.googleAnalytics]
