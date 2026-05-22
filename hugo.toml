@@ -148,7 +148,7 @@ enableEmoji = false
 
 # Outputs
 [outputs]
-  home = ["HTML", "RSS", "JSON"]
+  home = ["HTML", "RSS", "JSON", "RobotsTXT"]
 
 # Markup
 [markup]
