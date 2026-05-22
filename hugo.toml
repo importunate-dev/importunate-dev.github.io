@@ -89,7 +89,7 @@ enableEmoji = false
 # Analytics
 [services]
   [services.googleAnalytics]
-    id = "G-QZMSC32TSX"
+    id = "G-M5XGPL2PKX"
 
 # Menu
 [[menu.main]]
