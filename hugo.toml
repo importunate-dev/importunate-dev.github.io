@@ -17,7 +17,6 @@ enableEmoji = false
 [sitemap]
   changefreq = "weekly"
   priority = 0.5
-  filename = "sitemap-v2.xml"
 
 [minify]
   disableXML = true

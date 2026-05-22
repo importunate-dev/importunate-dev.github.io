@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://importunate-dev.github.io/sitemap-v2.xml
+Sitemap: https://importunate-dev.github.io/sitemap.xml
