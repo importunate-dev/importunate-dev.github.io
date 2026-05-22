@@ -86,9 +86,6 @@ enableEmoji = false
     minMatchCharLength = 0
     keys = ["title", "permalink", "summary", "content"]
 
-  [params.analytics.google]
-    SiteVerificationTag = "KlUUFMNGkyJiE-Sud0xxNRb_YML8LSwJeTEtN-5tgrE"
-
 # Analytics
 [services]
   [services.googleAnalytics]
