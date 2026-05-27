@@ -65,7 +65,7 @@ enableEmoji = false
 
   [[params.socialIcons]]
     name = "email"
-    url = "mailto:importuntae.dev@gmail.com"
+    url = "mailto:importunate.dev@gmail.com"
 
   [params.cover]
     hidden = false
