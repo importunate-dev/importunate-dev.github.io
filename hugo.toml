@@ -1,6 +1,7 @@
 baseURL = "https://importunate-dev.github.io/"
 languageCode = "ko"
 defaultContentLanguage = "ko"
+timeZone = "Asia/Seoul"
 title = "Importunate"
 theme = "PaperMod"
 [pagination]
