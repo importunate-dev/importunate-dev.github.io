@@ -1,0 +1,11 @@
+{{- /* 검색 결과에 사이트명이 "GitHub"로 표기되는 문제 대응: 홈페이지에 WebSite 구조화 데이터 선언 */ -}}
+{{- if .IsHome }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": {{ site.Title }},
+  "url": {{ site.BaseURL }}
+}
+</script>
+{{- end }}
