@@ -4,3 +4,7 @@ resources/
 
 # GSC 분석용 다운로드 데이터 (레포 비포함)
 https___*-Crawl-stats-*/
+
+# claude
+.claude
+Claude.md
