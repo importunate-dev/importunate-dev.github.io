@@ -1,0 +1,27 @@
+<script>
+  // 카테고리 페이지 시리즈 필터
+  (function () {
+    var filter = document.querySelector(".series-filter");
+    var list = document.getElementById("series-list");
+    if (!filter || !list) return;
+
+    var btns = filter.querySelectorAll(".series-btn");
+    var entries = list.querySelectorAll(".post-entry");
+
+    filter.addEventListener("click", function (e) {
+      var btn = e.target.closest(".series-btn");
+      if (!btn) return;
+
+      var target = btn.getAttribute("data-series");
+      btns.forEach(function (b) { b.classList.remove("active"); });
+      btn.classList.add("active");
+
+      entries.forEach(function (entry) {
+        var raw = entry.getAttribute("data-series") || "";
+        var series = raw.split("|").filter(Boolean);
+        var show = target === "all" || series.indexOf(target) !== -1;
+        entry.style.display = show ? "" : "none";
+      });
+    });
+  })();
+</script>

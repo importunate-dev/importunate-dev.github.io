@@ -32,6 +32,8 @@ enableEmoji = false
 
   defaultTheme = "auto"
   disableThemeToggle = false
+  # 최근 글(N 뱃지) 기준 일수
+  recentDays = 7
   ShowReadingTime = true
   ShowShareButtons = true
   ShowPostNavLinks = true
@@ -103,6 +105,12 @@ enableEmoji = false
   weight = 10
 
 [[menu.main]]
+  identifier = "nav-about"
+  name = "소개"
+  url = "/about/"
+  weight = 15
+
+[[menu.main]]
   identifier = "cat-study"
   name = "공부"
   url = "/categories/study/"
@@ -133,16 +141,14 @@ enableEmoji = false
   weight = 60
 
 [[menu.main]]
-  identifier = "nav-about"
-  name = "소개"
-  url = "/about/"
-  weight = 70
-
-[[menu.main]]
   identifier = "nav-archive"
   name = "아카이브"
   url = "/archives/"
   weight = 80
+
+# Permalinks — posts 하위 폴더(카테고리/시리즈) 위치와 무관하게 URL을 파일명 기준으로 고정
+[permalinks]
+  posts = "/posts/:contentbasename/"
 
 # Taxonomies
 [taxonomies]

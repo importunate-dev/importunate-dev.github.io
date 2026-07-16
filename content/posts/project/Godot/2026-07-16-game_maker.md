@@ -2,7 +2,7 @@
 title: "게임 만들기 - Godot 기초 배우기"
 date: "2026-07-16"
 categories:
-  - "study"
+  - "project"
 tags:
   - "game_maker"
   - "project"
@@ -15,8 +15,6 @@ series:
 ShowToc: true
 TocOpen: false
 ---
-
-# 2026-07-16 — Godot 기초 학습 정리
 
 ## 오늘 한 것
 - Godot 4.7 설치 (Homebrew)
