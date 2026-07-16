@@ -1,0 +1,9 @@
+{{- /* 검색 인덱스 경량화: summary는 content 앞부분과 중복이고 검색 결과 화면에도 쓰이지 않으므로 제외.
+       전문(content) 검색은 그대로 유지. (원본 대비 약 40% 축소) */ -}}
+{{- $.Scratch.Add "index" slice -}}
+{{- range site.RegularPages -}}
+    {{- if and (not .Params.searchHidden) (ne .Layout `archives`) (ne .Layout `search`) }}
+    {{- $.Scratch.Add "index" (dict "title" .Title "content" .Plain "permalink" .Permalink) -}}
+    {{- end }}
+{{- end -}}
+{{- $.Scratch.Get "index" | jsonify -}}

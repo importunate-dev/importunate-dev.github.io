@@ -1,27 +1,57 @@
 <script>
-  // 카테고리 페이지 시리즈 필터
+  // 카테고리 페이지: 시리즈 필터 + "더보기" 점진 렌더 (대량 DOM 초기 표시 최소화)
   (function () {
-    var filter = document.querySelector(".series-filter");
     var list = document.getElementById("series-list");
-    if (!filter || !list) return;
+    if (!list) return;
 
-    var btns = filter.querySelectorAll(".series-btn");
-    var entries = list.querySelectorAll(".post-entry");
+    var filter = document.querySelector(".series-filter");
+    var moreBtn = document.getElementById("series-more");
+    var entries = Array.prototype.slice.call(list.querySelectorAll(".post-entry"));
+    var PAGE = 30;
+    var current = "all";
+    var limit = PAGE;
 
-    filter.addEventListener("click", function (e) {
-      var btn = e.target.closest(".series-btn");
-      if (!btn) return;
+    function matches(entry) {
+      if (current === "all") return true;
+      var series = (entry.getAttribute("data-series") || "").split("|").filter(Boolean);
+      return series.indexOf(current) !== -1;
+    }
 
-      var target = btn.getAttribute("data-series");
-      btns.forEach(function (b) { b.classList.remove("active"); });
-      btn.classList.add("active");
+    function render() {
+      var shown = 0;
+      for (var i = 0; i < entries.length; i++) {
+        var e = entries[i];
+        if (matches(e) && shown < limit) {
+          e.style.display = "";
+          shown++;
+        } else {
+          e.style.display = "none";
+        }
+      }
+      // 필터에 걸린 전체 개수
+      var total = 0;
+      for (var j = 0; j < entries.length; j++) if (matches(entries[j])) total++;
+      if (moreBtn) moreBtn.style.display = shown < total ? "" : "none";
+    }
 
-      entries.forEach(function (entry) {
-        var raw = entry.getAttribute("data-series") || "";
-        var series = raw.split("|").filter(Boolean);
-        var show = target === "all" || series.indexOf(target) !== -1;
-        entry.style.display = show ? "" : "none";
+    if (filter) {
+      filter.addEventListener("click", function (e) {
+        var btn = e.target.closest(".series-btn");
+        if (!btn) return;
+        current = btn.getAttribute("data-series");
+        limit = PAGE;
+        var btns = filter.querySelectorAll(".series-btn");
+        for (var i = 0; i < btns.length; i++) btns[i].classList.remove("active");
+        btn.classList.add("active");
+        render();
       });
-    });
+    }
+    if (moreBtn) {
+      moreBtn.addEventListener("click", function () {
+        limit += PAGE;
+        render();
+      });
+    }
+    render();
   })();
 </script>

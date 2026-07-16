@@ -1,6 +1,7 @@
 ---
 title: "타입 수정을 통해 gRPC 성능 개선하기"
 date: "2026-07-15"
+description: "gRPC 타입 개선으로 성능 최적화 (v1→v2→stub)"
 categories:
   - "study"
 tags:

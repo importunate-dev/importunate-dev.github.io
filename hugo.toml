@@ -1,5 +1,5 @@
 baseURL = "https://importunate-dev.github.io/"
-languageCode = "ko"
+locale = "ko"
 defaultContentLanguage = "ko"
 timeZone = "Asia/Seoul"
 title = "Importunate"
@@ -87,7 +87,7 @@ enableEmoji = false
     distance = 1000
     threshold = 0.4
     minMatchCharLength = 0
-    keys = ["title", "permalink", "summary", "content"]
+    keys = ["title", "permalink", "content"]
 
   [params.analytics.naver]
     SiteVerificationTag = "4a2034ee708e9eb4dea2033d4e1ae11d33f87b64"
@@ -133,6 +133,12 @@ enableEmoji = false
   name = "일상"
   url = "/categories/life/"
   weight = 50
+
+[[menu.main]]
+  identifier = "cat-notice"
+  name = "공지"
+  url = "/categories/notice/"
+  weight = 55
 
 [[menu.main]]
   identifier = "nav-search"

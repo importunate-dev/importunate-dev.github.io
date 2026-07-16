@@ -1,6 +1,7 @@
 ---
 title: "게임 만들기 - Godot 기초 배우기"
 date: "2026-07-16"
+description: "Godot 노드·씬·스크립트 등 기초 개념 학습 정리"
 categories:
   - "project"
 tags:
