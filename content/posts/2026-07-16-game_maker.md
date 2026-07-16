@@ -88,13 +88,13 @@ tutorials/
 
 ![godot 에디터 사용법](https://cdn.jsdelivr.net/gh/importunate-dev/blog-images/study/gamemaker/1.png)
 
-1. 버튼을 누르면 자산을 획득하는 기능 구현
+2. 버튼을 누르면 자산을 획득하는 기능 구현
 
 ![버튼 클릭 기능 스크린샷](https://cdn.jsdelivr.net/gh/importunate-dev/blog-images/study/gamemaker/2.png)
 
 ![버튼 클릭 기능 동작](https://cdn.jsdelivr.net/gh/importunate-dev/blog-images/study/gamemaker/3.gif)
 
-1. 씬을 추가하여 은행 씬을 추가했고, 거기에선 버튼을 누르면 돈을 받도록 설정. 기존 씬에선 버튼을 누를때 50%의 확률로 돈을 얻거나 잃도록 수정
+3. 씬을 추가하여 은행 씬을 추가했고, 거기에선 버튼을 누르면 돈을 받도록 설정. 기존 씬에선 버튼을 누를때 50%의 확률로 돈을 얻거나 잃도록 수정
     
 ![은행 씬 스크린샷](https://cdn.jsdelivr.net/gh/importunate-dev/blog-images/study/gamemaker/4.png)
 
