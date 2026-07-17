@@ -64,12 +64,18 @@
 {{- $seriesList = $seriesList | uniq | sort }}
 
 {{- if $seriesList }}
+{{- /* 카테고리 전체에 최근 글이 있는지 */}}
+{{- $anyNew := false }}
+{{- range $pages }}{{ if lt (now.Sub .Date).Hours $recentHours }}{{ $anyNew = true }}{{ end }}{{ end }}
 <div class="series-filter" role="tablist" aria-label="시리즈 필터">
-  <button type="button" class="series-btn active" data-series="all">전체 <span class="series-count">{{ len $pages }}</span></button>
+  <button type="button" class="series-btn active" data-series="all">전체{{ if $anyNew }}<sup class="menu-new" title="최근 {{ site.Params.recentDays | default 7 }}일 내 새 글">N</sup>{{ end }} <span class="series-count">{{ len $pages }}</span></button>
   {{- range $seriesList }}
   {{- $s := . }}
-  {{- $cnt := len (where $pages "Params.series" "intersect" (slice $s)) }}
-  <button type="button" class="series-btn" data-series="{{ $s }}">{{ $s }} <span class="series-count">{{ $cnt }}</span></button>
+  {{- $inSeries := where $pages "Params.series" "intersect" (slice $s) }}
+  {{- $cnt := len $inSeries }}
+  {{- $hasNew := false }}
+  {{- range $inSeries }}{{ if lt (now.Sub .Date).Hours $recentHours }}{{ $hasNew = true }}{{ end }}{{ end }}
+  <button type="button" class="series-btn" data-series="{{ $s }}">{{ $s }}{{ if $hasNew }}<sup class="menu-new" title="최근 {{ site.Params.recentDays | default 7 }}일 내 새 글">N</sup>{{ end }} <span class="series-count">{{ $cnt }}</span></button>
   {{- end }}
 </div>
 {{- end }}

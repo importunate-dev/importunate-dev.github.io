@@ -10,6 +10,13 @@
 
 ## [Unreleased]
 
+## [1.1.1] - 2026-07-17
+
+### Changed
+- 최근 글 `N` 뱃지를 길쭉한 알약 → 작은 원형으로.
+- 카테고리 페이지 시리즈 필터 버튼에도 최근 글이 있으면 `N` 표시(전체 버튼 포함).
+- 공지 글 정렬 고정: 같은 날짜의 v1.0.0·v1.1.0 공지에 명시적 시각을 부여해 v1.0.0이 위에 오도록.
+
 ## [1.1.0] - 2026-07-16
 
 ### Added
@@ -43,6 +50,7 @@
 - 게임 개발 글 분류: `study` → `project`.
 - `content/posts/`를 `posts/{category}/{series}/` 2단계 구조로 재구성(749개, URL 무변경).
 
-[Unreleased]: https://github.com/importunate-dev/importunate-dev.github.io/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/importunate-dev/importunate-dev.github.io/compare/v1.1.1...HEAD
+[1.1.1]: https://github.com/importunate-dev/importunate-dev.github.io/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/importunate-dev/importunate-dev.github.io/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/importunate-dev/importunate-dev.github.io/releases/tag/v1.0.0
