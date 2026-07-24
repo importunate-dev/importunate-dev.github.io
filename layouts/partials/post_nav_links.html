@@ -1,0 +1,60 @@
+{{- /* PaperMod post_nav_links.html 오버라이드.
+     시리즈 박스 + 시리즈 범위 이전/다음 + 관련 글을 이 지점(태그 아래, 공유 버튼 위)에 렌더한다.
+     주의: ShowPostNavLinks=false로 끄면 관련 글도 함께 꺼진다 (현재 전역 true 고정). */}}
+{{- $page := . }}
+{{- $mainPages := where site.RegularPages "Type" "in" site.Params.mainSections }}
+{{- if in $mainPages $page }}
+
+{{- $terms := $page.GetTerms "series" }}
+{{- $rendered := false }}
+{{- with index $terms 0 }}
+  {{- $term := . }}
+  {{- $pages := $term.Pages.ByDate }}
+  {{- $total := len $pages }}
+  {{- $cur := -1 }}
+  {{- range $i, $p := $pages }}{{ if $p.Eq $page }}{{ $cur = $i }}{{ end }}{{ end }}
+
+  {{- if and (ge $cur 0) (gt $total 1) }}
+    {{- $rendered = true }}
+    {{- partial "series_box.html" (dict "term" $term "pages" $pages "total" $total "cur" $cur) }}
+    <nav class="paginav">
+      {{- if gt $cur 0 }}{{ with index $pages (sub $cur 1) }}
+      <a class="prev" href="{{ .Permalink }}">
+        <span class="title">« 이전 편</span>
+        <br>
+        <span>{{- .Name -}}</span>
+      </a>
+      {{- end }}{{ end }}
+      {{- if lt $cur (sub $total 1) }}{{ with index $pages (add $cur 1) }}
+      <a class="next" href="{{ .Permalink }}">
+        <span class="title">다음 편 »</span>
+        <br>
+        <span>{{- .Name -}}</span>
+      </a>
+      {{- end }}{{ end }}
+    </nav>
+  {{- end }}
+{{- end }}
+
+{{- /* 시리즈가 없거나 1편뿐인 글: 테마 원본과 동일한 전역 시간순 이전/다음 폴백 */}}
+{{- if and (not $rendered) (gt (len $mainPages) 1) }}
+<nav class="paginav">
+  {{- with $mainPages.Next $page }}
+  <a class="prev" href="{{ .Permalink }}">
+    <span class="title">« {{ i18n "prev_page" }}</span>
+    <br>
+    <span>{{- .Name -}}</span>
+  </a>
+  {{- end }}
+  {{- with $mainPages.Prev $page }}
+  <a class="next" href="{{ .Permalink }}">
+    <span class="title">{{ i18n "next_page" }} »</span>
+    <br>
+    <span>{{- .Name -}}</span>
+  </a>
+  {{- end }}
+</nav>
+{{- end }}
+
+{{- partial "related_posts.html" $page }}
+{{- end }}

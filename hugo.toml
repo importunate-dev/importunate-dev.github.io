@@ -29,6 +29,8 @@ enableEmoji = false
   description = "샐러드랩 백엔드 개발자 배준수의 기술 블로그. 데이터베이스, CS, 인프라를 공부하고 실무에서 고민한 과정을 기록합니다."
   keywords = ["programmer", "backend", "developer", "blog"]
   author = "배준수"
+  # 커버 없는 글의 og:image 폴백 (추후 1200×630 전용 이미지로 교체 권장)
+  images = ["apple-touch-icon.png"]
 
   defaultTheme = "auto"
   disableThemeToggle = false
@@ -88,6 +90,10 @@ enableEmoji = false
     threshold = 0.4
     minMatchCharLength = 0
     keys = ["title", "permalink", "content"]
+
+  # 개인 블로그 — JSON-LD publisher를 Organization 대신 Person으로
+  [params.schema]
+    publisherType = "person"
 
   [params.analytics.naver]
     SiteVerificationTag = "4a2034ee708e9eb4dea2033d4e1ae11d33f87b64"
@@ -161,6 +167,22 @@ enableEmoji = false
   category = "categories"
   tag = "tags"
   series = "series"
+
+# Related Content(관련 글 추천) — series는 의도적으로 제외:
+# 시리즈 탐색은 글 하단 시리즈 박스가 담당하고, weekly(315편)끼리 추천이 도배되는 것을 방지
+[related]
+  includeNewer = true
+  toLower = true
+  threshold = 30
+  [[related.indices]]
+    name = "tags"
+    weight = 100
+  [[related.indices]]
+    name = "categories"
+    weight = 40
+  [[related.indices]]
+    name = "date"
+    weight = 10
 
 # Outputs
 [outputs]

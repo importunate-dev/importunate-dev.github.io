@@ -1,0 +1,14 @@
+{{- $related := site.RegularPages.Related . | first 4 }}
+{{- with $related }}
+<div class="related-posts">
+  <h3 class="related-title">이런 글은 어떠세요?</h3>
+  <ul>
+    {{- range . }}
+    <li><a href="{{ .Permalink }}">
+      <span class="related-post-title">{{ .Title }}</span>
+      <span class="related-post-meta">{{ .Date.Format "2006.01.02" }}{{ with index (.GetTerms "tags") 0 }} · {{ .LinkTitle }}{{ end }}</span>
+    </a></li>
+    {{- end }}
+  </ul>
+</div>
+{{- end }}

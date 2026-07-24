@@ -10,6 +10,20 @@
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-07-24
+
+### Added
+- **글 하단 시리즈 목차 박스**: 접이식 박스에 시리즈 전체 목록 + 현재 글 하이라이트 + (i/N편) 진행 표시. 20편 초과 대형 시리즈(weekly 315편 등)는 현재 글 ±7편 윈도우만 렌더하고 "전체 보기" 링크로 시리즈 페이지 연결(HTML 크기 폭증 방지).
+- **시리즈 범위 이전/다음 편 내비게이션**: 기존 전역 시간순 이전/다음 대신 같은 시리즈 안에서 이동. 시리즈 없는 글은 기존 전역 내비게이션으로 폴백.
+- **관련 글 추천**: Hugo 내장 Related Content로 글 하단에 태그·카테고리 기반 관련 글 4개 표시. series 인덱스는 의도적으로 제외해 시리즈 도배 방지(시리즈 탐색은 시리즈 박스가 담당).
+
+### Changed
+- 커버 없는 글의 `og:image` 폴백 지정(`params.images`) — 소셜 공유 미리보기 개선. 추후 1200×630 전용 이미지 제작 예정.
+- JSON-LD publisher를 Organization → **Person**으로(개인 블로그에 맞게).
+
+### Notes
+- 구현은 `post_nav_links.html` 파셜 오버라이드로 처리(테마 single.html 전체 복사 회피 → 서브모듈 업데이트 드리프트 최소화). `ShowPostNavLinks=false`로 끄면 관련 글도 함께 꺼지는 결합이 있음.
+
 ## [1.1.1] - 2026-07-17
 
 ### Changed
@@ -50,7 +64,8 @@
 - 게임 개발 글 분류: `study` → `project`.
 - `content/posts/`를 `posts/{category}/{series}/` 2단계 구조로 재구성(749개, URL 무변경).
 
-[Unreleased]: https://github.com/importunate-dev/importunate-dev.github.io/compare/v1.1.1...HEAD
+[Unreleased]: https://github.com/importunate-dev/importunate-dev.github.io/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/importunate-dev/importunate-dev.github.io/compare/v1.1.1...v1.2.0
 [1.1.1]: https://github.com/importunate-dev/importunate-dev.github.io/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/importunate-dev/importunate-dev.github.io/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/importunate-dev/importunate-dev.github.io/releases/tag/v1.0.0

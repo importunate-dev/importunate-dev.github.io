@@ -1,0 +1,38 @@
+{{- /* 시리즈 접이식 목차 박스.
+     20편 초과 시 현재 글 ±7편(15편) 윈도우만 렌더해 HTML 크기 폭증 방지(weekly 315편 대비).
+     <ol start>로 윈도우여도 실제 편 번호 유지. */}}
+{{- $term := .term }}
+{{- $pages := .pages }}
+{{- $total := .total }}
+{{- $cur := .cur }}
+{{- $limit := 20 }}
+{{- $win := 7 }}
+{{- $start := 0 }}
+{{- $count := $total }}
+{{- if gt $total $limit }}
+  {{- $count = add (mul $win 2) 1 }}
+  {{- $start = sub $cur $win }}
+  {{- if lt $start 0 }}{{ $start = 0 }}{{ end }}
+  {{- if gt (add $start $count) $total }}{{ $start = sub $total $count }}{{ end }}
+{{- end }}
+{{- $slice := first $count (after $start $pages) }}
+<details class="series-box">
+  <summary>📚 <a href="{{ $term.Permalink }}">{{ $term.LinkTitle }}</a> 시리즈
+    <span class="series-count">({{ add $cur 1 }}/{{ $total }}편)</span></summary>
+  {{- if gt $start 0 }}
+  <div class="series-window-more"><a href="{{ $term.Permalink }}">↑ 앞의 {{ $start }}편 — 전체 {{ $total }}편 보기</a></div>
+  {{- end }}
+  <ol start="{{ add $start 1 }}">
+    {{- range $i, $p := $slice }}
+    {{- if eq (add $start $i) $cur }}
+    <li class="current" aria-current="page"><span>{{ $p.Title }}</span></li>
+    {{- else }}
+    <li><a href="{{ $p.Permalink }}">{{ $p.Title }}</a></li>
+    {{- end }}
+    {{- end }}
+  </ol>
+  {{- $rest := sub $total (add $start $count) }}
+  {{- if gt $rest 0 }}
+  <div class="series-window-more"><a href="{{ $term.Permalink }}">↓ 뒤의 {{ $rest }}편 — 전체 {{ $total }}편 보기</a></div>
+  {{- end }}
+</details>
