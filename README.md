@@ -34,6 +34,14 @@ content/posts/{category}/{series}/YYYY-MM-DD-slug.md
 https://cdn.jsdelivr.net/gh/importunate-dev/blog-images/{카테고리}/{파일명}
 ```
 
+여러 이미지를 사용하는 새 글은 게시글 단위로 디렉터리를 분리한다.
+
+```
+{카테고리}/{시리즈}/{YYYY-MM-DD}/{의미-있는-파일명}.{확장자}
+```
+
+예: `project/godot/2026-08-02/stock-price.gif`. 시리즈 전체에서 `1.gif`, `2.gif`처럼 전역 순번을 이어 붙이지 않는다.
+
 ## 배포
 
 `main` 브랜치 push 시 `.github/workflows/hugo.yml`가 자동 빌드·배포한다.
