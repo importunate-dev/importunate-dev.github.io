@@ -1,0 +1,4 @@
+interface:
+  display_name: "블로그 게시글 발행"
+  short_description: "Hugo 게시글·Velog 프리뷰·이미지를 함께 발행"
+  default_prompt: "Use $publish-blog-post to publish this draft as a complete blog post bundle."
