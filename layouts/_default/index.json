@@ -1,9 +1,20 @@
-{{- /* 검색 인덱스 경량화: summary는 content 앞부분과 중복이고 검색 결과 화면에도 쓰이지 않으므로 제외.
-       전문(content) 검색은 그대로 유지. (원본 대비 약 40% 축소) */ -}}
+{{- /* 초기 다운로드와 검색 노이즈를 줄이기 위해 전문 대신 요약·제목·분류를 색인한다. */ -}}
 {{- $.Scratch.Add "index" slice -}}
 {{- range site.RegularPages -}}
     {{- if and (not .Params.searchHidden) (ne .Layout `archives`) (ne .Layout `search`) }}
-    {{- $.Scratch.Add "index" (dict "title" .Title "content" .Plain "permalink" .Permalink) -}}
+    {{- $description := .Description | default (.Summary | plainify | truncate 180) -}}
+    {{- $headings := .TableOfContents | plainify | htmlUnescape -}}
+    {{- $.Scratch.Add "index" (dict
+        "title" .Title
+        "description" $description
+        "headings" $headings
+        "permalink" .Permalink
+        "date" (.Date.Format "2006-01-02")
+        "year" (.Date.Format "2006")
+        "categories" (.Params.categories | default slice)
+        "tags" (.Params.tags | default slice)
+        "series" (.Params.series | default slice)
+    ) -}}
     {{- end }}
 {{- end -}}
 {{- $.Scratch.Get "index" | jsonify -}}

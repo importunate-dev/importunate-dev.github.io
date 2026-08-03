@@ -29,8 +29,8 @@ enableEmoji = false
   description = "샐러드랩 백엔드 개발자 배준수의 기술 블로그. 데이터베이스, CS, 인프라를 공부하고 실무에서 고민한 과정을 기록합니다."
   keywords = ["programmer", "backend", "developer", "blog"]
   author = "배준수"
-  # 커버 없는 글의 og:image 폴백 (추후 1200×630 전용 이미지로 교체 권장)
-  images = ["apple-touch-icon.png"]
+  # 커버 없는 글의 1200×630 Open Graph 이미지 폴백
+  images = ["og-default.png"]
 
   defaultTheme = "auto"
   disableThemeToggle = false
@@ -89,11 +89,16 @@ enableEmoji = false
     distance = 1000
     threshold = 0.4
     minMatchCharLength = 0
-    keys = ["title", "permalink", "content"]
+    limit = 50
+    keys = ["title", "description", "headings", "categories", "tags", "series"]
 
   # 개인 블로그 — JSON-LD publisher를 Organization 대신 Person으로
   [params.schema]
     publisherType = "person"
+    sameAs = [
+      "https://github.com/importunate-dev",
+      "https://www.linkedin.com/in/junsu-594122277"
+    ]
 
   [params.analytics.naver]
     SiteVerificationTag = "4a2034ee708e9eb4dea2033d4e1ae11d33f87b64"
@@ -176,10 +181,10 @@ enableEmoji = false
   threshold = 30
   [[related.indices]]
     name = "tags"
-    weight = 100
+    weight = 70
   [[related.indices]]
     name = "categories"
-    weight = 40
+    weight = 50
   [[related.indices]]
     name = "date"
     weight = 10
@@ -196,5 +201,9 @@ enableEmoji = false
     lineNos = true
     style = "monokai"
   [markup.goldmark]
+    [markup.goldmark.parser]
+      [markup.goldmark.parser.attribute]
+        block = true
+        title = true
     [markup.goldmark.renderer]
       unsafe = true

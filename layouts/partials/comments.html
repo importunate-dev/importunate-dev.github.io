@@ -1,15 +1,50 @@
-<script src="https://giscus.app/client.js"
-        data-repo="importunate-dev/importunate-dev.github.io"
-        data-repo-id="R_kgDOJO1Nyg"
-        data-category="Announcements"
-        data-category-id="DIC_kwDOJO1Nys4C69bc"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="preferred_color_scheme"
-        data-lang="ko"
-        crossorigin="anonymous"
-        async>
+<section id="comments" class="comments-section" aria-labelledby="comments-title">
+  <h2 id="comments-title">댓글</h2>
+  <div id="giscus-container" class="giscus-container">
+    <button id="giscus-load" class="giscus-load" type="button">댓글 불러오기</button>
+  </div>
+</section>
+<script>
+  (function () {
+    var container = document.getElementById('giscus-container');
+    var button = document.getElementById('giscus-load');
+    if (!container || !button) return;
+
+    var loaded = false;
+    function loadComments() {
+      if (loaded) return;
+      loaded = true;
+      button.disabled = true;
+      button.textContent = '댓글을 불러오는 중입니다…';
+
+      var script = document.createElement('script');
+      script.src = 'https://giscus.app/client.js';
+      script.async = true;
+      script.crossOrigin = 'anonymous';
+      script.setAttribute('data-repo', 'importunate-dev/importunate-dev.github.io');
+      script.setAttribute('data-repo-id', 'R_kgDOJO1Nyg');
+      script.setAttribute('data-category', 'Announcements');
+      script.setAttribute('data-category-id', 'DIC_kwDOJO1Nys4C69bc');
+      script.setAttribute('data-mapping', 'pathname');
+      script.setAttribute('data-strict', '0');
+      script.setAttribute('data-reactions-enabled', '1');
+      script.setAttribute('data-emit-metadata', '0');
+      script.setAttribute('data-input-position', 'bottom');
+      script.setAttribute('data-theme', 'preferred_color_scheme');
+      script.setAttribute('data-lang', 'ko');
+      script.addEventListener('load', function () { button.remove(); });
+      container.appendChild(script);
+    }
+
+    button.addEventListener('click', loadComments);
+    if ('IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function (entries) {
+        if (entries.some(function (entry) { return entry.isIntersecting; })) {
+          observer.disconnect();
+          loadComments();
+        }
+      }, { rootMargin: '600px 0px' });
+      observer.observe(container);
+    }
+  })();
 </script>

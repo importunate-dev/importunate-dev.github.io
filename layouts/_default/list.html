@@ -52,9 +52,7 @@
 {{- $isCatTerm := and (eq .Kind "term") (eq .Data.Singular "category") }}
 
 {{- if $isCatTerm }}
-{{- /* ── 카테고리 페이지: 페이지네이션 없이 전체 렌더 + 시리즈 필터 ── */}}
-
-{{- /* 이 카테고리에 존재하는 시리즈 목록 수집 */}}
+{{- /* 카테고리 페이지: 전체 DOM을 만들지 않고 실제 시리즈 페이지로 이동한다. */}}
 {{- $seriesList := slice }}
 {{- range $pages }}
   {{- range .Params.series }}
@@ -64,64 +62,32 @@
 {{- $seriesList = $seriesList | uniq | sort }}
 
 {{- if $seriesList }}
-{{- /* 카테고리 전체에 최근 글이 있는지 */}}
 {{- $anyNew := false }}
 {{- range $pages }}{{ if lt (now.Sub .Date).Hours $recentHours }}{{ $anyNew = true }}{{ end }}{{ end }}
-<div class="series-filter" role="tablist" aria-label="시리즈 필터">
-  <button type="button" class="series-btn active" data-series="all">전체{{ if $anyNew }}<sup class="menu-new" title="최근 {{ site.Params.recentDays | default 7 }}일 내 새 글">N</sup>{{ end }} <span class="series-count">{{ len $pages }}</span></button>
+<nav class="series-filter" aria-label="이 카테고리의 시리즈">
+  <a class="series-btn active" href="{{ .RelPermalink }}" aria-current="page">전체{{ if $anyNew }}<sup class="menu-new" title="최근 {{ site.Params.recentDays | default 7 }}일 내 새 글">N</sup>{{ end }} <span class="series-count">{{ len $pages }}</span></a>
   {{- range $seriesList }}
   {{- $s := . }}
   {{- $inSeries := where $pages "Params.series" "intersect" (slice $s) }}
   {{- $cnt := len $inSeries }}
   {{- $hasNew := false }}
   {{- range $inSeries }}{{ if lt (now.Sub .Date).Hours $recentHours }}{{ $hasNew = true }}{{ end }}{{ end }}
-  <button type="button" class="series-btn" data-series="{{ $s }}">{{ $s }}{{ if $hasNew }}<sup class="menu-new" title="최근 {{ site.Params.recentDays | default 7 }}일 내 새 글">N</sup>{{ end }} <span class="series-count">{{ $cnt }}</span></button>
+  {{- with site.GetPage (printf "/series/%s" ($s | urlize)) }}
+  <a class="series-btn" href="{{ .RelPermalink }}">{{ $s }}{{ if $hasNew }}<sup class="menu-new" title="최근 {{ site.Params.recentDays | default 7 }}일 내 새 글">N</sup>{{ end }} <span class="series-count">{{ $cnt }}</span></a>
   {{- end }}
-</div>
+  {{- end }}
+</nav>
 {{- end }}
-
-<div id="series-list">
-{{- range $pages }}
-<article class="post-entry tag-entry" data-series="{{ with .Params.series }}{{ delimit . "|" }}{{ end }}">
-  {{- $isHidden := (.Param "cover.hiddenInList") | default (.Param "cover.hidden") | default false }}
-  {{- partial "cover.html" (dict "cxt" . "IsSingle" false "isHidden" $isHidden) }}
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">
-      {{- .Title }}
-      {{- if lt (now.Sub .Date).Hours $recentHours }}<sup class="post-new" title="최근 {{ site.Params.recentDays | default 7 }}일 내 새 글">N</sup>{{ end }}
-      {{- if .Draft }}
-      <span class="entry-hint" title="Draft">
-        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
-          <path
-            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
-        </svg>
-      </span>
-      {{- end }}
-    </h2>
-  </header>
-  {{- if (ne (.Param "hideSummary") true) }}
-  <div class="entry-content">
-    <p>{{ .Summary | plainify | htmlUnescape }}{{ if .Truncated }}...{{ end }}</p>
-  </div>
-  {{- end }}
-  {{- if not (.Param "hideMeta") }}
-  <footer class="entry-footer">
-    {{- partial "post_meta.html" . -}}
-  </footer>
-  {{- end }}
-  <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
-</article>
 {{- end }}
-</div>
-<button id="series-more" class="series-more" type="button" style="display:none">더보기</button>
-
-{{- else }}
-{{- /* ── 그 외(홈/섹션 등): 기존 페이지네이션 동작 ── */}}
 
 {{- $paginator := .Paginate $pages }}
 
 {{- if and .IsHome site.Params.homeInfoParams (eq $paginator.PageNumber 1) }}
 {{- partial "home_info.html" . }}
+<div class="home-section-heading home-recent-heading">
+  <h2>최근 글</h2>
+  <a href="{{ "/archives/" | relLangURL }}">전체 보기 →</a>
+</div>
 {{- end }}
 
 {{- $term := .Data.Term }}
@@ -189,8 +155,6 @@
   </nav>
 </footer>
 {{- end }}
-
-{{- end }}{{/* end isCatTerm */}}
 
 {{- end }}{{/* end profileMode */}}
 

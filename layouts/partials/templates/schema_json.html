@@ -1,0 +1,65 @@
+{{- if .IsHome }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": {{ site.Params.author }},
+  "url": {{ "/about/" | absURL }},
+  "image": {{ "og-default.png" | absURL }},
+  "jobTitle": "Backend Developer",
+  "sameAs": {{ site.Params.schema.sameAs | jsonify }}
+}
+</script>
+{{- else if .IsPage }}
+{{- $isPost := eq .Section "posts" -}}
+{{- $images := partial "templates/_funcs/get-page-images" . -}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": {{ cond $isPost "BlogPosting" "WebPage" }},
+  "headline": {{ .Title | plainify }},
+  "name": {{ .Title | plainify }},
+  "description": {{ with .Description }}{{ . | plainify }}{{ else }}{{ .Summary | plainify }}{{ end }},
+  "inLanguage": "ko-KR",
+  "url": {{ .Permalink }},
+  {{- with index $images 0 }}
+  "image": {{ .Permalink }},
+  {{- end }}
+  {{- if $isPost }}
+  "datePublished": {{ .PublishDate }},
+  "dateModified": {{ .Lastmod }},
+  "keywords": {{ .Params.tags | default slice | jsonify }},
+  "author": {
+    "@type": "Person",
+    "name": {{ site.Params.author }},
+    "url": {{ "/about/" | absURL }}
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": {{ site.Params.author }},
+    "url": {{ site.BaseURL }}
+  },
+  {{- end }}
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": {{ .Permalink }}
+  }
+}
+</script>
+{{- else if or .IsSection (eq .Kind "term") (eq .Kind "taxonomy") }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": {{ .Title | plainify }},
+  "description": {{ with .Description }}{{ . | plainify }}{{ else }}{{ site.Params.description }}{{ end }},
+  "inLanguage": "ko-KR",
+  "url": {{ .Permalink }},
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": {{ site.Title }},
+    "url": {{ site.BaseURL }}
+  }
+}
+</script>
+{{- end }}

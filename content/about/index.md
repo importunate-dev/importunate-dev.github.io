@@ -1,22 +1,91 @@
 ---
 title: "소개"
+description: "백엔드 개발자 배준수의 경험, 역량, 대표 프로젝트"
 layout: "single"
-ShowToc: false
+ShowToc: true
+TocOpen: false
 ShowBreadCrumbs: false
 ---
 
-## 배준수
+대규모 비동기 이벤트 처리와 데이터 정합성 문제를 운영 관점에서 해결하는 Python 백엔드 개발자 배준수입니다.
 
-- Bachelor Degree 13.03 ~ 22.02
-- SW Academy 23.02 ~ 23.07
-- Saladlab IT 23.11 ~
+## 해결해 온 문제
 
-### Tech Stack
+- 외부 커머스 플랫폼의 웹훅을 순서·중복·요청 제한까지 고려해 처리하는 파이프라인을 설계하고 운영했습니다.
+- 서비스 간 통신에서 직렬화 비용, 하위 호환성, 장애 격리를 함께 검토하며 gRPC 프로토콜을 개선했습니다.
+- 이벤트와 KPI 데이터를 안정적으로 분류·적재·판정하는 파이프라인을 설계하고 구현하고 있습니다.
+- Data Insight와 전자상거래 데이터 관리 경험은 독립 프로젝트보다, 데이터 정합성과 운영 자동화를 다루는 역량의 근거로 정리합니다.
 
-Python, FastAPI, Django, PostgreSQL, Redis
+## 핵심 역량
 
-### Contact
+- **Backend**: Python, FastAPI, Django 기반 API와 배치·비동기 처리
+- **Data**: PostgreSQL, Redis를 활용한 데이터 모델링, 캐시, 동기화
+- **Async & Cloud**: SQS, Lambda, Step Functions, EventBridge를 이용한 이벤트 처리
+- **Reliability**: 재시도, DLQ, 중복 방지, 순서 보장, rate limit, 관측성
+- **Decision making**: 대안을 비교하고 실패 조건과 검증 방법을 먼저 정의하는 방식
 
-- **GitHub:** [importunate-dev](https://github.com/importunate-dev)
-- **Email:** importuntae.dev@gmail.com
-- **LinkedIn:** [junsu-594122277](https://www.linkedin.com/in/junsu-594122277)
+## 대표 프로젝트
+
+### 외부 커머스 플랫폼 웹훅 처리 시스템
+
+고정 서버 중심의 처리 구조를 메시지 큐와 서버리스 워크플로 중심으로 재설계했습니다. 운영 과정에서 드러난 noisy-neighbor, 중복 판정, 재시도 증폭, 배치 분기 문제를 추적하고 개선했습니다.
+
+- [대표 케이스 스터디](/posts/2025-07-28-log250728/)
+- [설계·운영 기록 모음](/portfolio/webhooks/)
+
+### SCP 데이터 파이프라인 — 진행 중
+
+이벤트를 분류하고 KPI를 계산·판정해 후속 처리로 연결하는 데이터 파이프라인을 설계하고 구현하고 있습니다. 아직 진행 중인 작업이며, 배포 또는 사업 성과로 확정해 표현하지 않습니다.
+
+- [상세 글](/portfolio/scp/)
+
+### gRPC v2 성능·호환성 개선
+
+기존 클라이언트를 유지하면서 타입이 명확한 v2 프로토콜을 병행하고, 직렬화 경계와 조회 범위를 조정했습니다. 측정 결과는 기존 기록에 남아 있으나 공개 전에 벤치마크 조건을 다시 확인해야 합니다.
+
+- [상세 글](/portfolio/grpc/)
+
+## 기타 프로젝트와 학습
+
+### CodeEat
+
+코딩을 처음 접하는 어린이를 위한 미니게임 플랫폼입니다. 팀에서 백엔드를 담당했으며 대상 사용자, 주요 기능, 발표 자료와 저장소 링크를 기존 글에 정리했습니다.
+
+- [프로젝트 소개](/posts/2023-07-11-project1/)
+
+### NestJS 중고차 API
+
+TypeScript와 NestJS를 학습하며 인증, ORM, 직렬화, Guard, 유닛·E2E 테스트와 승인 흐름을 구현한 학습 프로젝트입니다.
+
+- [NestJS 연재 시작 글](/posts/2023-10-27-nestjs231027/)
+
+### Godot 데이터 주도 설계
+
+Resource와 `.tres`, 시그널, 상태의 단일 쓰기 지점을 실습하며 게임 데이터를 정의·가변·파생 데이터로 분리한 기록입니다.
+
+- [최근 Godot 글](/posts/2026-08-02-game_maker/)
+
+## 업무 방식
+
+1. 증상보다 먼저 데이터 흐름과 실패 경계를 그립니다.
+2. 관리 비용·비용·호환성까지 포함해 대안을 비교합니다.
+3. 성공 경로뿐 아니라 재시도, 중복, 지연, 부분 실패를 검증합니다.
+4. 운영에서 추측하지 않도록 로그와 지표를 설계합니다.
+5. 실패한 가정과 남은 한계를 기록해 다음 의사결정의 근거로 남깁니다.
+
+## 경력과 학습 배경
+
+- **Backend Developer** — 2023.11 ~ 현재
+- **Software Academy** — 2023.02 ~ 2023.07
+- **Bachelor's Degree** — 2013.03 ~ 2022.02
+
+직무명, 전공, 기관명은 공개 가능한 정식 표기를 확인한 뒤 보완할 예정입니다.
+
+## 글과 연락처
+
+기술 블로그에는 실제 문제를 해결하며 내린 판단, 실패, 검증 과정을 기록합니다.
+
+- [GitHub](https://github.com/importunate-dev)
+- [LinkedIn](https://www.linkedin.com/in/junsu-594122277/)
+
+회사·고객·인프라 식별자와 비공개 수치는 공개하지 않습니다. 필요한 경우 프로젝트의 역할과 기술적 판단을 공개 가능한 범위에서 설명하겠습니다.

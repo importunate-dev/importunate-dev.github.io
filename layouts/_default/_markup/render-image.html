@@ -12,7 +12,7 @@
     {{- end -}}
   {{- end -}}
 {{- end -}}
-{{- $attributes := merge .Attributes (dict "alt" .Text "src" $src "title" (.Title | transform.HTMLEscape) "loading" "lazy") -}}
+{{- $attributes := merge .Attributes (dict "alt" .Text "src" $src "title" (.Title | transform.HTMLEscape) "loading" "lazy" "decoding" "async") -}}
 {{- /* 이미지를 클릭하면 원본을 새 창에서 크게 볼 수 있도록 링크로 감싼다 */ -}}
 <a href="{{ $src }}" class="img-zoom" target="_blank" rel="noopener noreferrer" aria-label="{{ .Text | default "이미지" }} 새 창에서 크게 보기"><img
   {{- range $k, $v := $attributes -}}

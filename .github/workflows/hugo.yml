@@ -4,6 +4,8 @@ name: Deploy Hugo site to Pages
 on:
   push:
     branches: ["main"]
+  pull_request:
+    branches: ["main"]
   workflow_dispatch:
 
 permissions:
@@ -37,10 +39,20 @@ jobs:
           fetch-depth: 0
 
       - name: Setup Pages
+        if: github.event_name != 'pull_request'
         id: pages
         uses: actions/configure-pages@v5
 
-      - name: Build with Hugo
+      - name: Build pull request preview
+        if: github.event_name == 'pull_request'
+        env:
+          HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
+          HUGO_ENVIRONMENT: production
+          TZ: Asia/Seoul
+        run: hugo --gc --minify
+
+      - name: Build Pages artifact
+        if: github.event_name != 'pull_request'
         env:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
           HUGO_ENVIRONMENT: production
@@ -51,12 +63,17 @@ jobs:
             --minify \
             --baseURL "${{ steps.pages.outputs.base_url }}/"
 
+      - name: Validate generated site
+        run: python3 scripts/validate_site.py --public public
+
       - name: Upload artifact
+        if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./public
 
   deploy:
+    if: github.event_name != 'pull_request'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

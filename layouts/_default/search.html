@@ -1,0 +1,39 @@
+{{- define "main" }}
+
+<header class="page-header">
+    <h1>{{- (printf "%s&nbsp;" .Title ) | htmlUnescape -}}
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+    </h1>
+    {{- with .Description }}<div class="post-description">{{ . }}</div>{{- end }}
+</header>
+
+<div id="searchbox">
+    <input id="searchInput" autofocus placeholder="{{ .Params.placeholder | default (printf "%s ↵" .Title) }}"
+        aria-label="블로그 검색" aria-autocomplete="list" aria-expanded="false"
+        aria-controls="searchSuggestions searchResults" type="search" autocomplete="off" maxlength="64">
+    <ul id="searchSuggestions" class="search-suggestions" role="listbox" aria-label="자동완성" hidden></ul>
+
+    <div class="search-filters" aria-label="검색 필터">
+        <div class="search-filter">
+            <label for="categoryFilter">카테고리</label>
+            <select id="categoryFilter"><option value="">전체 카테고리</option></select>
+        </div>
+        <div class="search-filter">
+            <label for="seriesFilter">시리즈</label>
+            <select id="seriesFilter"><option value="">전체 시리즈</option></select>
+        </div>
+        <div class="search-filter">
+            <label for="yearFilter">연도</label>
+            <select id="yearFilter"><option value="">전체 연도</option></select>
+        </div>
+    </div>
+
+    <p id="searchStatus" class="search-status" role="status" aria-live="polite">검색 인덱스를 불러오는 중입니다.</p>
+    <ul id="searchResults" aria-label="검색 결과"></ul>
+</div>
+
+{{- end }}

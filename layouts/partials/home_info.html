@@ -1,0 +1,33 @@
+{{- with site.Params.homeInfoParams }}
+<article class="first-entry home-info">
+    <header class="entry-header">
+        <h1>{{ .Title | markdownify }}</h1>
+    </header>
+    <div class="entry-content">
+        {{ .Content | markdownify }}
+    </div>
+    <footer class="entry-footer">
+        {{ partial "social_icons.html" (dict "align" site.Params.homeInfoParams.AlignSocialIconsTo) }}
+    </footer>
+</article>
+{{- end -}}
+
+{{- $featured := where site.RegularPages "Section" "portfolio" -}}
+{{- $featured = where $featured "Params.featured" true -}}
+{{- $featured = sort $featured "Params.featuredOrder" -}}
+{{- with $featured }}
+<section class="home-featured" aria-labelledby="featured-title">
+    <div class="home-section-heading">
+        <h2 id="featured-title">대표 프로젝트</h2>
+        <a href="{{ "/about/#대표-프로젝트" | relLangURL }}">전체 보기 →</a>
+    </div>
+    <div class="featured-grid">
+        {{- range first 3 . }}
+        <article class="featured-card">
+            <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+            <p>{{ .Description }}</p>
+        </article>
+        {{- end }}
+    </div>
+</section>
+{{- end }}
